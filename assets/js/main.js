@@ -184,26 +184,40 @@ class CVWebsite {
         const cacheKey = `content-${language}`;
 
         if (this.contentCache[cacheKey]) {
+            console.log(`Using cached data for ${language}`);
             return this.contentCache[cacheKey];
         }
 
         try {
-            // Use embedded YAML data instead of fetching JSON files
+            console.log(`Loading content data for ${language}...`);
+
+            // First try: Use embedded YAML data
             if (window.siteData && window.siteData[language]) {
+                console.log(`Using embedded data for ${language}`);
                 const data = window.siteData[language];
                 this.contentCache[cacheKey] = data;
                 return data;
             }
 
-            // Fallback to English if current language fails
-            if (language !== 'en' && window.siteData && window.siteData.en) {
-                console.warn(`Language ${language} not available, falling back to English`);
-                const data = window.siteData.en;
-                this.contentCache[`content-en`] = data;
+            console.log(`No embedded data for ${language}, trying JSON fallback...`);
+
+            // Fallback: Try to fetch JSON files (for development/testing)
+            const baseUrl = document.querySelector('meta[name="base-url"]')?.content || '';
+            const response = await fetch(`${baseUrl}/assets/data/${language}.json`);
+            if (response.ok) {
+                console.log(`Loaded ${language} data from JSON file`);
+                const data = await response.json();
+                this.contentCache[cacheKey] = data;
                 return data;
             }
 
-            throw new Error(`No data available for language: ${language}`);
+            // Second fallback: Try English if current language fails
+            if (language !== 'en') {
+                console.warn(`Language ${language} not available, falling back to English`);
+                return this.loadContentData('en');
+            }
+
+            throw new Error(`No data available for language: ${language}. Embedded: ${!!window.siteData}, Languages: ${window.siteData ? Object.keys(window.siteData) : 'none'}`);
         } catch (error) {
             console.error(`Error loading content for ${language}:`, error);
             throw error;

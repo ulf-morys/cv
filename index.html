@@ -102,33 +102,66 @@ description: "Ulf Morys - Senior Finance Director with expertise in financial ma
 <!-- Embed YAML data as JavaScript objects for dynamic loading -->
 <script>
 // Embed site data for dynamic loading
-window.siteData = {
-    en: {{ site.data.en.content | jsonify }},
-    de: {{ site.data.de.content | jsonify }},
-    fr: {{ site.data.fr.content | jsonify }}
-};
+console.log('Attempting to embed YAML data...');
+try {
+    window.siteData = {
+        en: {{ site.data.en.content | jsonify }},
+        de: {{ site.data.de.content | jsonify }},
+        fr: {{ site.data.fr.content | jsonify }}
+    };
+    console.log('YAML data embedded successfully');
+    console.log('Available languages:', window.siteData ? Object.keys(window.siteData) : 'None');
+    if (window.siteData && window.siteData.en) {
+        console.log('English data structure:', {
+            hasSlogan: !!window.siteData.en.slogan,
+            hasIntro: !!window.siteData.en.intro,
+            hasCareerPositions: !!window.siteData.en.career_positions,
+            careerCount: window.siteData.en.career_positions ? window.siteData.en.career_positions.length : 0
+        });
+    }
+} catch (error) {
+    console.error('Error embedding YAML data:', error);
+    window.siteData = null;
+}
 </script>
 
 <script>
 // Initialize dynamic content loading
 document.addEventListener('DOMContentLoaded', function() {
     console.log('CV Website loaded - initializing dynamic content');
-    console.log('Site data available:', window.siteData ? Object.keys(window.siteData) : 'No data');
+    console.log('Site data check:', {
+        exists: !!window.siteData,
+        languages: window.siteData ? Object.keys(window.siteData) : 'None',
+        cvWebsiteExists: !!window.cvWebsite
+    });
 
     // Ensure language selector and navigation are initialized
     if (window.cvWebsite) {
+        console.log('Initializing language selector and navigation...');
         window.cvWebsite.initializeLanguageSelector();
         window.cvWebsite.initializeNavigation();
 
         // Load and render dynamic content
         setTimeout(() => {
+            console.log('Attempting to load and render content...');
             if (window.cvWebsite.isMainPage()) {
-                window.cvWebsite.loadAndRenderContent().catch(error => {
+                window.cvWebsite.loadAndRenderContent().then(() => {
+                    console.log('Content loaded successfully');
+                }).catch(error => {
                     console.error('Dynamic loading failed:', error);
-                    window.cvWebsite.showError('Failed to load content. Please refresh the page.');
+                    console.error('Error details:', {
+                        message: error.message,
+                        stack: error.stack,
+                        siteDataExists: !!window.siteData
+                    });
+                    window.cvWebsite.showError('Failed to load content. Please check console for details.');
                 });
+            } else {
+                console.log('Not on main page, skipping content load');
             }
         }, 100);
+    } else {
+        console.error('CVWebsite not initialized - main.js may not be loaded');
     }
 });
 </script>
