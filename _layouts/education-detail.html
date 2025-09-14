@@ -54,7 +54,14 @@ layout: default
     async function loadEducationDetail(achievementId) {
         try {
             const currentLang = getCurrentLanguage();
-            const data = await loadContentData(currentLang);
+            let data;
+
+            // Use embedded data if available, otherwise fallback to API
+            if (window.siteData && window.siteData[currentLang]) {
+                data = window.siteData[currentLang];
+            } else {
+                data = await loadContentData(currentLang);
+            }
 
             const achievement = data.academic_achievements.find(ach => ach.id === achievementId);
 
@@ -138,10 +145,11 @@ layout: default
         const nextAchievement = currentIndex < allAchievements.length - 1 ? allAchievements[currentIndex + 1] : null;
 
         let navHtml = '<div class="achievement-nav-links">';
+        const baseUrl = document.querySelector('meta[name="base-url"]')?.content || '';
 
         if (prevAchievement) {
             navHtml += `
-                <a href="/education/${prevAchievement.id}/" class="nav-prev">
+                <a href="${baseUrl}/education/${prevAchievement.id}/" class="nav-prev">
                     <span class="nav-direction">← Previous</span>
                     <span class="nav-title">${prevAchievement.degree_type}</span>
                     <span class="nav-institution">${prevAchievement.institution}</span>
@@ -151,7 +159,7 @@ layout: default
 
         if (nextAchievement) {
             navHtml += `
-                <a href="/education/${nextAchievement.id}/" class="nav-next">
+                <a href="${baseUrl}/education/${nextAchievement.id}/" class="nav-next">
                     <span class="nav-direction">Next →</span>
                     <span class="nav-title">${nextAchievement.degree_type}</span>
                     <span class="nav-institution">${nextAchievement.institution}</span>

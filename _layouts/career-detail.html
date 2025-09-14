@@ -54,7 +54,14 @@ layout: default
     async function loadCareerDetail(positionId) {
         try {
             const currentLang = getCurrentLanguage();
-            const data = await loadContentData(currentLang);
+            let data;
+
+            // Use embedded data if available, otherwise fallback to API
+            if (window.siteData && window.siteData[currentLang]) {
+                data = window.siteData[currentLang];
+            } else {
+                data = await loadContentData(currentLang);
+            }
 
             const position = data.career_positions.find(pos => pos.id === positionId);
 
@@ -129,9 +136,11 @@ layout: default
 
         let navHtml = '<div class="position-nav-links">';
 
+        const baseUrl = document.querySelector('meta[name="base-url"]')?.content || '';
+
         if (prevPosition) {
             navHtml += `
-                <a href="/career/${prevPosition.id}/" class="nav-prev">
+                <a href="${baseUrl}/career/${prevPosition.id}/" class="nav-prev">
                     <span class="nav-direction">← Previous</span>
                     <span class="nav-title">${prevPosition.position}</span>
                     <span class="nav-company">${prevPosition.company}</span>
@@ -141,7 +150,7 @@ layout: default
 
         if (nextPosition) {
             navHtml += `
-                <a href="/career/${nextPosition.id}/" class="nav-next">
+                <a href="${baseUrl}/career/${nextPosition.id}/" class="nav-next">
                     <span class="nav-direction">Next →</span>
                     <span class="nav-title">${nextPosition.position}</span>
                     <span class="nav-company">${nextPosition.company}</span>

@@ -12,13 +12,10 @@ class CVWebsite {
 
     async init() {
         this.setupEventListeners();
-        this.initializeLanguageSelector();
-        this.initializeNavigation();
+        // Don't auto-initialize selectors here - let the page script handle it
 
-        // Load content if on main page
-        if (this.isMainPage()) {
-            await this.loadAndRenderContent();
-        }
+        // Don't auto-load content - only load when explicitly requested
+        console.log('CVWebsite initialized');
     }
 
     setupEventListeners() {
@@ -191,24 +188,24 @@ class CVWebsite {
         }
 
         try {
-            const response = await fetch(`/_data/${language}/content.yml`);
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
+            // Use embedded YAML data instead of fetching JSON files
+            if (window.siteData && window.siteData[language]) {
+                const data = window.siteData[language];
+                this.contentCache[cacheKey] = data;
+                return data;
             }
-
-            const yamlText = await response.text();
-            const data = jsyaml.load(yamlText);
-
-            this.contentCache[cacheKey] = data;
-            return data;
-        } catch (error) {
-            console.error(`Error loading content for ${language}:`, error);
 
             // Fallback to English if current language fails
-            if (language !== 'en') {
-                return this.loadContentData('en');
+            if (language !== 'en' && window.siteData && window.siteData.en) {
+                console.warn(`Language ${language} not available, falling back to English`);
+                const data = window.siteData.en;
+                this.contentCache[`content-en`] = data;
+                return data;
             }
 
+            throw new Error(`No data available for language: ${language}`);
+        } catch (error) {
+            console.error(`Error loading content for ${language}:`, error);
             throw error;
         }
     }
@@ -225,14 +222,14 @@ class CVWebsite {
             // Update page title and meta description
             this.updatePageMeta(data);
 
-            // Render all sections if functions exist
-            if (typeof renderHeroSection === 'function') renderHeroSection(data);
-            if (typeof renderCareerCarousel === 'function') renderCareerCarousel(data);
-            if (typeof renderAcademicCarousel === 'function') renderAcademicCarousel(data);
-            if (typeof renderTimeline === 'function') renderTimeline(data);
-            if (typeof renderSkills === 'function') renderSkills(data);
-            if (typeof renderFooter === 'function') renderFooter(data);
-            if (typeof updateNavigationText === 'function') updateNavigationText(data.navigation);
+            // Render all sections
+            renderHeroSection(data);
+            renderCareerCarousel(data);
+            renderAcademicCarousel(data);
+            renderTimeline(data);
+            renderSkills(data);
+            renderFooter(data);
+            updateNavigationText(data.navigation);
 
             this.hideLoading();
         } catch (error) {
@@ -312,6 +309,179 @@ class CVWebsite {
     }
 }
 
+// Render Functions for Main Page
+function renderHeroSection(data) {
+    // Render slogan
+    const sloganHtml = `
+        <h1 class="slogan-latin">${data.slogan.latin}</h1>
+        <p class="slogan-translation">${data.slogan.translation}</p>
+    `;
+    document.getElementById('slogan').innerHTML = sloganHtml;
+
+    // Render intro
+    const introText = data.intro.text.replace(/\n/g, '<br>');
+    document.getElementById('intro').innerHTML = `<p class="intro-text">${introText}</p>`;
+}
+
+function renderCareerCarousel(data) {
+    document.getElementById('careerCarouselTitle').textContent = data.sections.career_carousel;
+
+    const baseUrl = document.querySelector('meta[name="base-url"]')?.content || '';
+    const carouselHtml = data.career_positions.map(position => `
+        <div class="carousel-item" onclick="window.location.href='${baseUrl}/career/${position.id}/'">
+            <div class="carousel-card">
+                <div class="card-logo">
+                    <img src="${baseUrl}${position.logo}" alt="${position.company} logo" onerror="this.style.display='none'">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">${position.position}</h3>
+                    <h4 class="card-company">${position.company}</h4>
+                    <p class="card-duration">${position.duration}</p>
+                </div>
+                ${position.current ? '<div class="current-badge">Current</div>' : ''}
+            </div>
+        </div>
+    `).join('');
+
+    document.getElementById('careerCarousel').innerHTML = carouselHtml;
+
+    // Initialize carousel functionality
+    if (window.carouselManager) {
+        window.carouselManager.initializeCarousel('careerCarousel');
+    }
+}
+
+function renderAcademicCarousel(data) {
+    document.getElementById('academicCarouselTitle').textContent = data.sections.academic_carousel;
+
+    const baseUrl = document.querySelector('meta[name="base-url"]')?.content || '';
+    const carouselHtml = data.academic_achievements.map(achievement => `
+        <div class="carousel-item" onclick="window.location.href='${baseUrl}/education/${achievement.id}/'">
+            <div class="carousel-card">
+                <div class="card-logo">
+                    <img src="${baseUrl}${achievement.logo}" alt="${achievement.institution} logo" onerror="this.style.display='none'">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">${achievement.degree_type}</h3>
+                    <h4 class="card-institution">${achievement.institution}</h4>
+                    <p class="card-duration">${achievement.duration}</p>
+                    ${achievement.grade ? `<p class="card-grade">${achievement.grade}</p>` : ''}
+                </div>
+            </div>
+        </div>
+    `).join('');
+
+    document.getElementById('academicCarousel').innerHTML = carouselHtml;
+
+    // Initialize carousel functionality
+    if (window.carouselManager) {
+        window.carouselManager.initializeCarousel('academicCarousel');
+    }
+}
+
+function renderTimeline(data) {
+    document.getElementById('timelineTitle').textContent = data.sections.career_timeline;
+
+    // Sort positions by start date (most recent first)
+    const sortedPositions = [...data.career_positions].sort((a, b) => {
+        return new Date(b.start_date || '1900-01-01') - new Date(a.start_date || '1900-01-01');
+    });
+
+    const baseUrl = document.querySelector('meta[name="base-url"]')?.content || '';
+    const timelineHtml = sortedPositions.map((position, index) => `
+        <div class="timeline-item ${index % 2 === 0 ? 'timeline-left' : 'timeline-right'}">
+            <div class="timeline-content">
+                <div class="timeline-date">${position.duration}</div>
+                <h3 class="timeline-position">${position.position}</h3>
+                <h4 class="timeline-company">${position.company}</h4>
+                <p class="timeline-summary">${position.summary}</p>
+                <a href="${baseUrl}/career/${position.id}/" class="timeline-link">Read More →</a>
+            </div>
+            <div class="timeline-marker">
+                ${position.current ? '<div class="current-indicator"></div>' : ''}
+            </div>
+        </div>
+    `).join('');
+
+    document.getElementById('timeline').innerHTML = timelineHtml;
+}
+
+function renderSkills(data) {
+    document.getElementById('skillsTitle').textContent = data.sections.skills_section;
+    document.getElementById('managementSkillsTitle').textContent = data.sections.management_skills;
+    document.getElementById('itSkillsTitle').textContent = data.sections.it_skills;
+    document.getElementById('languageSkillsTitle').textContent = data.sections.language_skills;
+
+    // Render management skills
+    const managementHtml = data.skills.management.map(skill => `
+        <div class="skill-item">
+            <div class="skill-header">
+                <span class="skill-name">${skill.name}</span>
+                <span class="skill-level">${skill.level}/10</span>
+            </div>
+            <div class="skill-bar">
+                <div class="skill-progress" style="width: ${skill.level * 10}%"></div>
+            </div>
+        </div>
+    `).join('');
+    document.getElementById('managementSkillsGrid').innerHTML = managementHtml;
+
+    // Render IT skills
+    const itHtml = data.skills.it.map(skill => `
+        <div class="skill-item">
+            <div class="skill-header">
+                <span class="skill-name">${skill.name}</span>
+                <span class="skill-level">${skill.level}/10</span>
+            </div>
+            <div class="skill-bar">
+                <div class="skill-progress" style="width: ${skill.level * 10}%"></div>
+            </div>
+        </div>
+    `).join('');
+    document.getElementById('itSkillsGrid').innerHTML = itHtml;
+
+    // Render language skills
+    const languageHtml = data.skills.languages.map(skill => `
+        <div class="skill-item">
+            <div class="skill-header">
+                <span class="skill-name">${skill.name}</span>
+                <span class="skill-level">${skill.level}/10</span>
+            </div>
+            <div class="skill-bar">
+                <div class="skill-progress" style="width: ${skill.level * 10}%"></div>
+            </div>
+            ${skill.note ? `<div class="skill-note">${skill.note}</div>` : ''}
+        </div>
+    `).join('');
+    document.getElementById('languageSkillsGrid').innerHTML = languageHtml;
+}
+
+function renderFooter(data) {
+    const footerHtml = `
+        <div class="contact-info">
+            <a href="mailto:${data.contact.email}" class="contact-link">
+                <span class="contact-icon">✉</span>
+                ${data.contact.email}
+            </a>
+            <a href="${data.contact.linkedin}" target="_blank" rel="noopener" class="contact-link">
+                <span class="contact-icon">in</span>
+                LinkedIn
+            </a>
+        </div>
+    `;
+    document.getElementById('footerContact').innerHTML = footerHtml;
+}
+
+function updateNavigationText(navigation) {
+    const navLinks = document.querySelectorAll('[data-nav]');
+    navLinks.forEach(link => {
+        const navKey = link.getAttribute('data-nav');
+        if (navigation[navKey]) {
+            link.textContent = navigation[navKey];
+        }
+    });
+}
+
 // Carousel functionality
 class CarouselManager {
     constructor() {
@@ -327,11 +497,9 @@ class CarouselManager {
     }
 
     setupCarousels() {
-        const carouselElements = document.querySelectorAll('.carousel');
-        carouselElements.forEach((carousel, index) => {
-            const id = carousel.id || `carousel-${index}`;
-            this.initializeCarousel(id);
-        });
+        // Initialize both main carousels
+        this.initializeCarousel('careerCarousel');
+        this.initializeCarousel('academicCarousel');
     }
 
     initializeCarousel(carouselId) {
@@ -600,9 +768,9 @@ window.hideLoading = function() {
     window.cvWebsite?.hideLoading();
 };
 
-// Initialize everything when DOM is ready
+// Initialize everything when DOM is ready - but don't auto-load content
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize main website functionality
+    // Initialize main website functionality (but don't auto-load content)
     window.cvWebsite = new CVWebsite();
 
     // Initialize carousel manager
@@ -614,7 +782,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize performance optimizations
     window.performanceManager = new PerformanceManager();
 
-    console.log('CV Website initialized successfully');
+    console.log('CV Website initialized (static mode)');
 });
 
 // Handle page visibility changes for performance
