@@ -1,0 +1,156 @@
+---
+layout: default
+---
+
+<article class="career-detail">
+    <div class="detail-container">
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb" id="breadcrumb">
+            <a href="/" data-nav="home">Home</a>
+            <span class="breadcrumb-separator">/</span>
+            <span data-nav="career">Career</span>
+            <span class="breadcrumb-separator">/</span>
+            <span class="current">{{ page.title | default: "Position" }}</span>
+        </nav>
+
+        <!-- Back Button -->
+        <div class="detail-nav">
+            <button class="btn-back" onclick="history.back()" id="backBtn">
+                ← Back
+            </button>
+        </div>
+
+        <!-- Position Header -->
+        <header class="position-header" id="positionHeader">
+            <!-- Content loaded dynamically -->
+        </header>
+
+        <!-- Position Content -->
+        <section class="position-content" id="positionContent">
+            <!-- Content loaded dynamically -->
+        </section>
+
+        <!-- Navigation Between Positions -->
+        <nav class="position-nav" id="positionNav">
+            <!-- Navigation loaded dynamically -->
+        </nav>
+    </div>
+</article>
+
+<script>
+    // Initialize career detail page
+    document.addEventListener('DOMContentLoaded', function() {
+        const urlPath = window.location.pathname;
+        const positionId = urlPath.split('/').filter(Boolean).pop();
+
+        if (positionId) {
+            loadCareerDetail(positionId);
+        } else {
+            // Redirect to home if no valid position ID
+            window.location.href = '/';
+        }
+    });
+
+    async function loadCareerDetail(positionId) {
+        try {
+            const currentLang = getCurrentLanguage();
+            const data = await loadContentData(currentLang);
+
+            const position = data.career_positions.find(pos => pos.id === positionId);
+
+            if (!position) {
+                // Position not found, redirect to home
+                window.location.href = '/';
+                return;
+            }
+
+            renderCareerDetail(position, data);
+        } catch (error) {
+            console.error('Error loading career detail:', error);
+            showError('Failed to load position details');
+        }
+    }
+
+    function renderCareerDetail(position, data) {
+        // Update page title
+        document.title = `${position.position} at ${position.company} - ${data.site?.title || 'Ulf Morys'}`;
+
+        // Render header
+        const headerHtml = `
+            <div class="company-logo">
+                <img src="${position.logo}" alt="${position.company} logo" onerror="this.style.display='none'">
+            </div>
+            <div class="position-info">
+                <h1>${position.position}</h1>
+                <h2>${position.company}</h2>
+                <p class="location">${position.location}</p>
+                <p class="duration">${position.duration}</p>
+                ${position.team_size ? `<p class="team-size">Team Size: ${position.team_size}</p>` : ''}
+                ${position.revenue_responsibility ? `<p class="revenue">Revenue Responsibility: ${position.revenue_responsibility}</p>` : ''}
+            </div>
+        `;
+        document.getElementById('positionHeader').innerHTML = headerHtml;
+
+        // Render content
+        const contentHtml = `
+            <div class="position-summary">
+                <h3>Summary</h3>
+                <p>${position.summary}</p>
+            </div>
+
+            ${position.responsibilities && position.responsibilities.length > 0 ? `
+            <div class="position-responsibilities">
+                <h3>Key Responsibilities</h3>
+                <ul>
+                    ${position.responsibilities.map(resp => `<li>${resp}</li>`).join('')}
+                </ul>
+            </div>
+            ` : ''}
+
+            ${position.achievements && position.achievements.length > 0 ? `
+            <div class="position-achievements">
+                <h3>Key Achievements</h3>
+                <ul>
+                    ${position.achievements.map(ach => `<li>${ach}</li>`).join('')}
+                </ul>
+            </div>
+            ` : ''}
+        `;
+        document.getElementById('positionContent').innerHTML = contentHtml;
+
+        // Render navigation
+        renderPositionNavigation(position, data.career_positions);
+    }
+
+    function renderPositionNavigation(currentPosition, allPositions) {
+        const currentIndex = allPositions.findIndex(pos => pos.id === currentPosition.id);
+        const prevPosition = currentIndex > 0 ? allPositions[currentIndex - 1] : null;
+        const nextPosition = currentIndex < allPositions.length - 1 ? allPositions[currentIndex + 1] : null;
+
+        let navHtml = '<div class="position-nav-links">';
+
+        if (prevPosition) {
+            navHtml += `
+                <a href="/career/${prevPosition.id}/" class="nav-prev">
+                    <span class="nav-direction">← Previous</span>
+                    <span class="nav-title">${prevPosition.position}</span>
+                    <span class="nav-company">${prevPosition.company}</span>
+                </a>
+            `;
+        }
+
+        if (nextPosition) {
+            navHtml += `
+                <a href="/career/${nextPosition.id}/" class="nav-next">
+                    <span class="nav-direction">Next →</span>
+                    <span class="nav-title">${nextPosition.position}</span>
+                    <span class="nav-company">${nextPosition.company}</span>
+                </a>
+            `;
+        }
+
+        navHtml += '</div>';
+
+        document.getElementById('positionNav').innerHTML = navHtml;
+    }
+</script>

@@ -1,0 +1,77 @@
+<!-- Enhanced SEO meta tags -->
+{% if page.lang %}
+  <html lang="{{ page.lang }}">
+{% else %}
+  <html lang="{{ site.default_language | default: 'en' }}">
+{% endif %}
+
+<!-- Open Graph meta tags -->
+<meta property="og:title" content="{% if page.title %}{{ page.title }} - {% endif %}{{ site.title }}">
+<meta property="og:description" content="{{ page.description | default: site.description | strip_html | normalize_whitespace | truncate: 160 }}">
+<meta property="og:type" content="website">
+<meta property="og:url" content="{{ page.url | absolute_url }}">
+<meta property="og:site_name" content="{{ site.title }}">
+
+<!-- Twitter Card meta tags -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{% if page.title %}{{ page.title }} - {% endif %}{{ site.title }}">
+<meta name="twitter:description" content="{{ page.description | default: site.description | strip_html | normalize_whitespace | truncate: 160 }}">
+
+<!-- Additional SEO meta tags -->
+<meta name="author" content="Ulf Morys">
+<meta name="robots" content="index, follow">
+<meta name="googlebot" content="index, follow">
+
+<!-- Language alternates -->
+<link rel="alternate" hreflang="en" href="{{ site.url }}{{ site.baseurl }}/en{{ page.url | remove_first: '/en' }}">
+<link rel="alternate" hreflang="de" href="{{ site.url }}{{ site.baseurl }}/de{{ page.url | remove_first: '/de' }}">
+<link rel="alternate" hreflang="fr" href="{{ site.url }}{{ site.baseurl }}/fr{{ page.url | remove_first: '/fr' }}">
+<link rel="alternate" hreflang="x-default" href="{{ site.url }}{{ site.baseurl }}{{ page.url }}">
+
+<!-- Canonical URL -->
+<link rel="canonical" href="{{ page.url | absolute_url }}">
+
+<!-- Structured Data for Person -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Ulf Morys",
+  "jobTitle": "Senior Finance Director",
+  "description": "{{ site.description }}",
+  "url": "{{ site.url }}{{ site.baseurl }}",
+  "sameAs": [
+    "https://www.linkedin.com/in/ulfmorys/"
+  ],
+  "knowsAbout": [
+    "Finance",
+    "Accounting",
+    "Strategic Planning",
+    "Team Leadership",
+    "Digital Transformation",
+    "Financial Analysis"
+  ],
+  "alumniOf": [
+    {
+      "@type": "CollegeOrUniversity",
+      "name": "Technische Hochschule Darmstadt"
+    },
+    {
+      "@type": "CollegeOrUniversity",
+      "name": "ENSGI Grenoble"
+    }
+  ],
+  "worksFor": [
+    {
+      "@type": "Organization",
+      "name": "Ubisoft GmbH"
+    }
+  ]
+}
+</script>
+
+<!-- Additional performance hints -->
+<link rel="dns-prefetch" href="//fonts.googleapis.com">
+<link rel="dns-prefetch" href="//fonts.gstatic.com">
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

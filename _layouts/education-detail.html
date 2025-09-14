@@ -1,0 +1,166 @@
+---
+layout: default
+---
+
+<article class="education-detail">
+    <div class="detail-container">
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb" id="breadcrumb">
+            <a href="/" data-nav="home">Home</a>
+            <span class="breadcrumb-separator">/</span>
+            <span data-nav="education">Education</span>
+            <span class="breadcrumb-separator">/</span>
+            <span class="current">{{ page.title | default: "Achievement" }}</span>
+        </nav>
+
+        <!-- Back Button -->
+        <div class="detail-nav">
+            <button class="btn-back" onclick="history.back()" id="backBtn">
+                ← Back
+            </button>
+        </div>
+
+        <!-- Achievement Header -->
+        <header class="achievement-header" id="achievementHeader">
+            <!-- Content loaded dynamically -->
+        </header>
+
+        <!-- Achievement Content -->
+        <section class="achievement-content" id="achievementContent">
+            <!-- Content loaded dynamically -->
+        </section>
+
+        <!-- Navigation Between Achievements -->
+        <nav class="achievement-nav" id="achievementNav">
+            <!-- Navigation loaded dynamically -->
+        </nav>
+    </div>
+</article>
+
+<script>
+    // Initialize education detail page
+    document.addEventListener('DOMContentLoaded', function() {
+        const urlPath = window.location.pathname;
+        const achievementId = urlPath.split('/').filter(Boolean).pop();
+
+        if (achievementId) {
+            loadEducationDetail(achievementId);
+        } else {
+            // Redirect to home if no valid achievement ID
+            window.location.href = '/';
+        }
+    });
+
+    async function loadEducationDetail(achievementId) {
+        try {
+            const currentLang = getCurrentLanguage();
+            const data = await loadContentData(currentLang);
+
+            const achievement = data.academic_achievements.find(ach => ach.id === achievementId);
+
+            if (!achievement) {
+                // Achievement not found, redirect to home
+                window.location.href = '/';
+                return;
+            }
+
+            renderEducationDetail(achievement, data);
+        } catch (error) {
+            console.error('Error loading education detail:', error);
+            showError('Failed to load achievement details');
+        }
+    }
+
+    function renderEducationDetail(achievement, data) {
+        // Update page title
+        document.title = `${achievement.degree_type} at ${achievement.institution} - ${data.site?.title || 'Ulf Morys'}`;
+
+        // Render header
+        const headerHtml = `
+            <div class="institution-logo">
+                <img src="${achievement.logo}" alt="${achievement.institution} logo" onerror="this.style.display='none'">
+            </div>
+            <div class="achievement-info">
+                <h1>${achievement.course_title}</h1>
+                <h2>${achievement.institution}</h2>
+                <p class="location">${achievement.location}</p>
+                <p class="duration">${achievement.duration}</p>
+                <p class="degree-type">${achievement.degree_type}</p>
+                ${achievement.grade ? `<p class="grade">Grade: ${achievement.grade}</p>` : ''}
+            </div>
+        `;
+        document.getElementById('achievementHeader').innerHTML = headerHtml;
+
+        // Render content
+        const contentHtml = `
+            <div class="achievement-description">
+                <h3>Description</h3>
+                <p>${achievement.description}</p>
+            </div>
+
+            <div class="achievement-details">
+                <h3>Details</h3>
+                <div class="detail-grid">
+                    <div class="detail-item">
+                        <span class="detail-label">Institution:</span>
+                        <span class="detail-value">${achievement.institution}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Location:</span>
+                        <span class="detail-value">${achievement.location}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Type:</span>
+                        <span class="detail-value">${achievement.degree_type}</span>
+                    </div>
+                    ${achievement.grade ? `
+                    <div class="detail-item">
+                        <span class="detail-label">Grade:</span>
+                        <span class="detail-value">${achievement.grade}</span>
+                    </div>
+                    ` : ''}
+                    <div class="detail-item">
+                        <span class="detail-label">Completed:</span>
+                        <span class="detail-value">${achievement.end_date}</span>
+                    </div>
+                </div>
+            </div>
+        `;
+        document.getElementById('achievementContent').innerHTML = contentHtml;
+
+        // Render navigation
+        renderAchievementNavigation(achievement, data.academic_achievements);
+    }
+
+    function renderAchievementNavigation(currentAchievement, allAchievements) {
+        const currentIndex = allAchievements.findIndex(ach => ach.id === currentAchievement.id);
+        const prevAchievement = currentIndex > 0 ? allAchievements[currentIndex - 1] : null;
+        const nextAchievement = currentIndex < allAchievements.length - 1 ? allAchievements[currentIndex + 1] : null;
+
+        let navHtml = '<div class="achievement-nav-links">';
+
+        if (prevAchievement) {
+            navHtml += `
+                <a href="/education/${prevAchievement.id}/" class="nav-prev">
+                    <span class="nav-direction">← Previous</span>
+                    <span class="nav-title">${prevAchievement.degree_type}</span>
+                    <span class="nav-institution">${prevAchievement.institution}</span>
+                </a>
+            `;
+        }
+
+        if (nextAchievement) {
+            navHtml += `
+                <a href="/education/${nextAchievement.id}/" class="nav-next">
+                    <span class="nav-direction">Next →</span>
+                    <span class="nav-title">${nextAchievement.degree_type}</span>
+                    <span class="nav-institution">${nextAchievement.institution}</span>
+                </a>
+            `;
+        }
+
+        navHtml += '</div>';
+
+        document.getElementById('achievementNav').innerHTML = navHtml;
+    }
+</script>
