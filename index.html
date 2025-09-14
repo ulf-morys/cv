@@ -148,6 +148,7 @@ function initializeDynamicContent() {
         if (window.cvWebsite.isMainPage()) {
             window.cvWebsite.loadAndRenderContent().then(() => {
                 console.log('Content loaded successfully');
+                window.contentInitialized = true; // Mark as successfully initialized
             }).catch(error => {
                 console.error('Dynamic loading failed:', error);
                 console.error('Error details:', {
@@ -159,6 +160,7 @@ function initializeDynamicContent() {
             });
         } else {
             console.log('Not on main page, skipping content load');
+            window.contentInitialized = true; // Mark as initialized even if not main page
         }
     } else {
         console.log('CVWebsite not yet available, retrying in 50ms...');
@@ -172,11 +174,33 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeDynamicContent();
 });
 
-// Fallback: Also try initialization after a short delay
+// Handle page visibility changes - restart initialization if needed
+document.addEventListener('visibilitychange', function() {
+    if (!document.hidden && window.cvWebsite && !window.contentInitialized) {
+        console.log('Page became visible - attempting initialization');
+        initializeDynamicContent();
+    }
+});
+
+// Multiple fallback attempts
 setTimeout(() => {
-    if (!window.cvWebsite) {
-        console.log('Fallback initialization attempt...');
+    if (!window.contentInitialized) {
+        console.log('Fallback initialization attempt 1...');
         initializeDynamicContent();
     }
 }, 200);
+
+setTimeout(() => {
+    if (!window.contentInitialized) {
+        console.log('Fallback initialization attempt 2...');
+        initializeDynamicContent();
+    }
+}, 500);
+
+setTimeout(() => {
+    if (!window.contentInitialized) {
+        console.log('Final fallback initialization attempt...');
+        initializeDynamicContent();
+    }
+}, 1000);
 </script>
