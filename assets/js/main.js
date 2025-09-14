@@ -746,15 +746,16 @@ class PerformanceManager {
     }
 
     preloadCriticalResources() {
-        // Preload YAML files for faster language switching
+        // Preload JSON files for faster language switching
         const languages = ['en', 'de', 'fr'];
         const currentLang = window.cvWebsite?.getCurrentLanguage() || 'en';
+        const baseUrl = document.querySelector('meta[name="base-url"]')?.content || '';
 
         languages.forEach(lang => {
             if (lang !== currentLang) {
                 const link = document.createElement('link');
                 link.rel = 'prefetch';
-                link.href = `/_data/${lang}/content.yml`;
+                link.href = `${baseUrl}/assets/data/${lang}.json`;
                 document.head.appendChild(link);
             }
         });

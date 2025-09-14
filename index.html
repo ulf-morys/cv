@@ -126,42 +126,57 @@ try {
 </script>
 
 <script>
-// Initialize dynamic content loading
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('CV Website loaded - initializing dynamic content');
-    console.log('Site data check:', {
-        exists: !!window.siteData,
-        languages: window.siteData ? Object.keys(window.siteData) : 'None',
-        cvWebsiteExists: !!window.cvWebsite
-    });
+// Initialize dynamic content loading - wait for CVWebsite to be available
+function initializeDynamicContent() {
+    console.log('Checking for CVWebsite availability...');
 
-    // Ensure language selector and navigation are initialized
     if (window.cvWebsite) {
+        console.log('CVWebsite found - initializing dynamic content');
+        console.log('Site data check:', {
+            exists: !!window.siteData,
+            languages: window.siteData ? Object.keys(window.siteData) : 'None',
+            cvWebsiteExists: !!window.cvWebsite
+        });
+
+        // Ensure language selector and navigation are initialized
         console.log('Initializing language selector and navigation...');
         window.cvWebsite.initializeLanguageSelector();
         window.cvWebsite.initializeNavigation();
 
         // Load and render dynamic content
-        setTimeout(() => {
-            console.log('Attempting to load and render content...');
-            if (window.cvWebsite.isMainPage()) {
-                window.cvWebsite.loadAndRenderContent().then(() => {
-                    console.log('Content loaded successfully');
-                }).catch(error => {
-                    console.error('Dynamic loading failed:', error);
-                    console.error('Error details:', {
-                        message: error.message,
-                        stack: error.stack,
-                        siteDataExists: !!window.siteData
-                    });
-                    window.cvWebsite.showError('Failed to load content. Please check console for details.');
+        console.log('Attempting to load and render content...');
+        if (window.cvWebsite.isMainPage()) {
+            window.cvWebsite.loadAndRenderContent().then(() => {
+                console.log('Content loaded successfully');
+            }).catch(error => {
+                console.error('Dynamic loading failed:', error);
+                console.error('Error details:', {
+                    message: error.message,
+                    stack: error.stack,
+                    siteDataExists: !!window.siteData
                 });
-            } else {
-                console.log('Not on main page, skipping content load');
-            }
-        }, 100);
+                window.cvWebsite.showError('Failed to load content. Please check console for details.');
+            });
+        } else {
+            console.log('Not on main page, skipping content load');
+        }
     } else {
-        console.error('CVWebsite not initialized - main.js may not be loaded');
+        console.log('CVWebsite not yet available, retrying in 50ms...');
+        setTimeout(initializeDynamicContent, 50);
     }
+}
+
+// Start initialization when DOM is ready
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('CV Website DOM loaded - starting initialization');
+    initializeDynamicContent();
 });
+
+// Fallback: Also try initialization after a short delay
+setTimeout(() => {
+    if (!window.cvWebsite) {
+        console.log('Fallback initialization attempt...');
+        initializeDynamicContent();
+    }
+}, 200);
 </script>
