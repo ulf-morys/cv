@@ -1,0 +1,326 @@
+# German Content Data
+slogan:
+  latin: "Ad fiduciam per factum"
+  translation: "Vertrauen durch Ergebnisse"
+
+intro:
+  text: |
+    Ich bin eine erfahrene Führungskraft, die im Herzen finanziell orientiert ist,
+    mit einer agilen Denkweise ausgestattet, getrieben von unternehmerischem Geist,
+    strategischem Denken und einer Leidenschaft für Digitalisierung. Ich verfüge über
+    eine nachweisliche Erfolgsbilanz in der Führung von Teams, die als zuverlässige
+    und vertrauenswürdige Geschäftspartner fungieren und optimale Unterstützung für
+    die Geschäftsbereiche bieten durch:
+    • Prozesse, die einfach funktionieren & Ergebnisse produzieren
+    • Handlungsorientierte Erkenntnisse für Entscheidungsfindung
+    • Unterstützung von Veränderungen in der gesamten Organisation
+
+contact:
+  email: "mail@morys.net"
+  linkedin: "https://www.linkedin.com/in/ulfmorys/"
+
+career_positions:
+  - id: "ubisoft-accounting-director-2024"
+    company: "Ubisoft GmbH"
+    location: "Düsseldorf"
+    position: "Senior Accounting Director EMEA"
+    start_date: "Juli 2024"
+    end_date: "Heute"
+    current: true
+    duration: "Juli 2024 - Heute"
+    logo: "/assets/images/ubisoft-logo.png"
+    summary: "Leitung von Buchhaltung, Treasury, Steuern, Compliance und Unternehmensangelegenheiten für Ubisoft-Aktivitäten in EMEA"
+    responsibilities:
+      - "Leitung von Buchhaltung, Treasury, Steuern, Compliance und Unternehmensangelegenheiten für Ubisoft-Aktivitäten in EMEA (außer Frankreich) mit der Führung eines internationalen Teams von 16 Mitarbeitern."
+      - "Übergang von einem entitätsbasierten zu einem Service-Center-Modell für die Buchhaltung."
+      - "Vorantreibung der KI-Einführung in der Finanzfunktion."
+      - "Vorbereitung eines größeren ERP-Updates auf cloud-basierte ERP-Systeme."
+      - "Unterstützung von Unternehmensvereinfachung und Restrukturierungsmaßnahmen zur Senkung der Gemeinkosten."
+    achievements: []
+    team_size: 16
+    revenue_responsibility: ""
+
+  - id: "ubisoft-finance-director-2013"
+    company: "Ubisoft GmbH"
+    location: "Düsseldorf"
+    position: "Finance Director Publishing Zentraleuropa"
+    start_date: "April 2013"
+    end_date: "Juni 2024"
+    current: false
+    duration: "April 2013 – Juni 2024"
+    logo: "/assets/images/ubisoft-logo.png"
+    summary: "Leitung von FP&A, Buchhaltung, Treasury, Steuern, Compliance für Marketing- und Vertriebsaktivitäten in GSA und Osteuropa"
+    responsibilities:
+      - "Leitung von FP&A, Buchhaltung, Treasury, Steuern, Compliance und Unternehmensangelegenheiten für Marketing- und Vertriebsaktivitäten in GSA (Deutschland, Schweiz, Österreich) und Osteuropa (Polen, Tschechien, Slowakei und Ungarn) mit Umsatzverantwortung im Bereich von 150-200 Mio. €, Mitarbeiterzahl ca. 80, Führung eines Teams von 9 Personen."
+      - "Monatliche, halbjährliche und Jahresabschlüsse nach lokalem GAP (HGB) und IFRS."
+      - "Regelmäßige rollende Prognosen für die gesamte lokale P&L, Analyse von Abweichungen zu geplanten KPIs."
+      - "Ansprechpartner intern (Unternehmensfinanzierung, IT-Integration, Steuern, Recht und Treasury) und extern (Banken, Wirtschaftsprüfer, Behörden) in allen Finanz-, Steuer-, Gesetzlichkeits-, Unternehmens-, Datenschutz- oder Rechtsangelegenheiten."
+      - "Übernahme der HR-Funktionen während einer Abteilungsrestrukturierung, Gewährleistung ununterbrochener Unterstützung für 60+ Mitarbeiter."
+      - "Ernannter Datenschutzbeauftragter & Data Evangelist, Förderung datengetriebener, digitaler & agiler Lösungen & Kultur."
+      - "Eröffnung und Schließung von Länderbüros (AT, CH, PL, DK), abhängig von der Marktentwicklung, sowie Schaffung / Liquidierung entsprechender Rechtsstrukturen."
+    achievements:
+      - "Initiierung und/oder Unterstützung von Unternehmensvereinfachung und M&A-Aktivitäten, z.B. resultierend in Steuereinsparungen > 1,5 Mio €."
+      - "Identifikation und Verhandlung erheblicher Kosteneinsparungen bei Betriebskosten (ca. 0,5 Mio. € p.a.)."
+    team_size: 9
+    revenue_responsibility: "150-200 Mio. €"
+
+  - id: "ubisoft-finance-director-germany-2009"
+    company: "Ubisoft GmbH"
+    location: "Düsseldorf"
+    position: "Finance Director Deutschland"
+    start_date: "Januar 2009"
+    end_date: "März 2013"
+    current: false
+    duration: "Januar 2009 – März 2013"
+    logo: "/assets/images/ubisoft-logo.png"
+    summary: "Leitung von FP&A, Buchhaltung, Treasury, Steuern, Compliance für Marketing- und Vertriebsaktivitäten in Deutschland und Österreich"
+    responsibilities:
+      - "Leitung von FP&A, Buchhaltung, Treasury, Steuern, Compliance und Unternehmensangelegenheiten für Marketing- und Vertriebsaktivitäten in Deutschland und Österreich mit Umsatzverantwortung im Bereich von 90-150 Mio. €, Mitarbeiterzahl ca. 70, Führung eines Teams von 8 Personen"
+      - "Gleichzeitige Bereitstellung derselben Finanzdienstleistungen für die lokale Produktionsentität, Ubisoft Blue Byte Studio GmbH, mit einer Mitarbeiterzahl im Bereich von 90-120."
+    achievements: []
+    team_size: 8
+    revenue_responsibility: "90-150 Mio. €"
+
+  - id: "ama-sales-director-2006"
+    company: "AMA Ltd. - Advanced Mobile Applications"
+    location: "Düsseldorf"
+    position: "Sales Director, Zentral- & Nordeuropa"
+    start_date: "Oktober 2006"
+    end_date: "Oktober 2008"
+    current: false
+    duration: "Oktober 2006 - Oktober 2008"
+    logo: "/assets/images/ama-logo.png"
+    summary: "Aufbau und Wachstum des Vertriebs für AMA's mobile Anwendungen in 9 zentral- und nordeuropäischen Ländern"
+    responsibilities:
+      - "Aufbau und Wachstum des Vertriebs für AMA's mobile Anwendungen (gleicher Gründerhintergrund wie Gameloft und Ubisoft) in 9 zentral- und nordeuropäischen Ländern über Betreiber, B2C-Vertriebskanäle und große Handset-Hersteller, Steigerung des Umsatzes von 0 auf den 1-Mio.-Bereich."
+    achievements:
+      - "Steigerung des Marktanteils und der Markenbekanntheit von AMA's Portfolio im Mobile-Content-Segment von 0 auf über 20%."
+    team_size: 0
+    revenue_responsibility: "0 bis 1 Mio €"
+
+  - id: "gameloft-general-manager-2000"
+    company: "Gameloft GmbH"
+    location: "Düsseldorf"
+    position: "General Manager"
+    start_date: "Oktober 2000"
+    end_date: "September 2008"
+    current: false
+    duration: "Oktober 2000 - September 2008"
+    logo: "/assets/images/gameloft-logo.png"
+    summary: "Aufbau einer Marktführerposition bei Mobile Games durch Schaffung von Abläufen von Grund auf"
+    responsibilities:
+      - "01/2006-09/2006, globale Verantwortung für Geschäftsentwicklungsaktivitäten auf neuen Plattformen; Vorbereitung des Eintritts in neue Märkte, Etablierung neuer Umsatzströme, z.B. Handset-Embedding, Online-Konsolen & neues Apple-Ökosystem."
+      - "Bis 12/2005 Aufbau einer Marktführerposition bei Mobile Games durch Schaffung von Abläufen & Kundenbeziehungen in GSA und Nachbarmärkten für das Portfolio von WAP-, PDA- und JAVA-Spielen von Grund auf; Management der Belegschaft (Vertrieb, Marketing und Betrieb; max. Teamgröße 8 Personen)."
+    achievements:
+      - "Erreichte Profitabilität der lokalen Geschäfte vom ersten Tag an und steigerte den Umsatz auf > 5 Mio €/Jahr und trug damit zur Wertsteigerung der Gruppe auf > 500 Mio. € bei."
+    team_size: 8
+    revenue_responsibility: "> 5 Mio €"
+
+  - id: "otelo-team-leader-1997"
+    company: "o.tel.o communications"
+    location: "Köln"
+    position: "Teamleiter Controlling"
+    start_date: "August 1997"
+    end_date: "September 2000"
+    current: false
+    duration: "August 1997 - September 2000"
+    logo: "/assets/images/otelo-logo.png"
+    summary: "Leiter Interconnection & Mietleitungen Controlling/Traffic Management"
+    responsibilities:
+      - "Ab Juli 1999: Leiter Interconnection & Mietleitungen Controlling/Traffic Management, Verwaltung von Interconnection-Volumen im 100-Mio.-EUR-Bereich mit einem Team von 4 Personen."
+      - "Bis Juni 1999: Teamleiter Investment / CAPEX Controlling."
+    achievements:
+      - "Optimierung des größten Einzelkostenfaktors des Unternehmens, erhebliche Reduzierung der Interconnection- & Mietleitungsgebühren (ca. 1 Mio. €/Monat)."
+    team_size: 4
+    revenue_responsibility: "100 Mio. EUR"
+
+  - id: "babcock-trainee-1995"
+    company: "Deutsche Babcock AG"
+    location: "Oberhausen"
+    position: "Trainee / Persönlicher Assistent des Konzern-CFO"
+    start_date: "Juni 1995"
+    end_date: "Juli 1997"
+    current: false
+    duration: "Juni 1995 - Juli 1997"
+    logo: "/assets/images/babcock-logo.png"
+    summary: "Persönlicher Assistent des Konzern-CFO und Mitglied der Konzernstrategie und M&A"
+    responsibilities:
+      - "Persönlicher Assistent des Konzern-CFO (Konzernumsatz im 4-Milliarden-EUR-Bereich)."
+      - "Mitglied der Konzernstrategie und M&A, Teilnahme an größeren Akquisitions- und Veräußerungsaktivitäten."
+      - "Projektleiter \"Babcock im Internet\", Schaffung der ersten Marktnachrichten- & Warndatenbank."
+    achievements:
+      - "Maßgeblich beteiligt an einer > 40 Mio EUR Reduzierung des Kaufpreises für ein Zielunternehmen während eines Fusionsprozesses."
+    team_size: 0
+    revenue_responsibility: "4 Milliarden EUR"
+
+  - id: "loreal-controller-1994"
+    company: "L'Oréal Deutschland"
+    location: "Düsseldorf"
+    position: "Bereichs-Junior Controller"
+    start_date: "Januar 1994"
+    end_date: "Mai 1995"
+    current: false
+    duration: "Januar 1994 - Mai 1995"
+    logo: "/assets/images/loreal-logo.png"
+    summary: "Budgetierung, Planung, Kostenkontrolle und Konzernreporting für Coiffure-Bereich"
+    responsibilities:
+      - "Budgetierung, Planung, Kostenkontrolle und Konzernreporting \"Coiffure\"-Bereich mit einem Umsatzvolumen im 50-Mio.-€-Bereich."
+    achievements: []
+    team_size: 0
+    revenue_responsibility: "50 Mio €"
+
+academic_achievements:
+  - id: "wirtschaftsingenieurwesen-darmstadt"
+    institution: "Technische Hochschule Darmstadt"
+    location: "Darmstadt"
+    degree_type: "Master in Maschinenbau Option"
+    course_title: "Studium des Wirtschaftsingenieurwesens"
+    start_date: ""
+    end_date: "1993"
+    duration: "1993"
+    grade: "1,9 Note auf 1-6 Skala"
+    logo: "/assets/images/tu-darmstadt-logo.png"
+    description: "Studium des Wirtschaftsingenieurwesens"
+
+  - id: "genie-industriel-grenoble"
+    institution: "ENSGI (Ecole Nationale Supérieure de Génie Industriel)"
+    location: "Grenoble, Frankreich"
+    degree_type: "Ingenieurstudium"
+    course_title: "Wirtschaftsingenieurwesen (Génie Industriel)"
+    start_date: ""
+    end_date: "1991"
+    duration: "1991"
+    grade: ""
+    logo: "/assets/images/ensgi-logo.png"
+    description: "Wirtschaftsingenieurwesen (Génie Industriel)"
+
+  - id: "military-service"
+    institution: "Deutsche Luftwaffe"
+    location: ""
+    degree_type: "Wehrdienst"
+    course_title: "Wehrdienst"
+    start_date: "Oktober 1986"
+    end_date: "Juli 1987"
+    duration: "Oktober 1986 - Juli 1987"
+    grade: ""
+    logo: "/assets/images/luftwaffe-logo.png"
+    description: "Wehrdienst bei der Deutschen Luftwaffe"
+
+  - id: "abitur-duesseldorf"
+    institution: "Städtisches Görresgymnasium"
+    location: "Düsseldorf"
+    degree_type: "Abitur / Deutsche Hochschulreife"
+    course_title: "Abitur / Deutsche Hochschulreife"
+    start_date: ""
+    end_date: "1986"
+    duration: "1986"
+    grade: "1,2 Note auf 1-6 Skala"
+    logo: "/assets/images/goerres-logo.png"
+    description: "Deutsche Hochschulreife (Abitur)"
+
+  - id: "us-high-school"
+    institution: "Kentridge High School"
+    location: "Kentridge, WA"
+    degree_type: "US High School Abschluss"
+    course_title: "US High School Abschluss"
+    start_date: ""
+    end_date: "1984"
+    duration: "1984"
+    grade: "3.8 GPA"
+    logo: "/assets/images/kentridge-logo.png"
+    description: "US High School Abschluss"
+
+skills:
+  management:
+    - name: "Teamführung"
+      level: 9
+      category: "management"
+    - name: "Strategische Voraussicht"
+      level: 9
+      category: "management"
+    - name: "Buchhaltungsangelegenheiten"
+      level: 8
+      category: "management"
+    - name: "Finanzplanung & Analyse"
+      level: 9
+      category: "management"
+    - name: "Projektmanagement und Umsetzung"
+      level: 9
+      category: "management"
+    - name: "Unternehmensteuerrecht"
+      level: 7
+      category: "management"
+    - name: "Unternehmensrecht"
+      level: 5
+      category: "management"
+    - name: "Unternehmens-Compliance"
+      level: 7
+      category: "management"
+    - name: "Datenschutz und Privatsphäre"
+      level: 8
+      category: "management"
+
+  it:
+    - name: "Standard-Büroanwendungen"
+      level: 9
+      category: "it"
+    - name: "KI und Agenten-Tools"
+      level: 8
+      category: "it"
+    - name: "Data Science: ML / AI Prozesse"
+      level: 8
+      category: "it"
+    - name: "Python (Jupyter / Jupyter Lab)"
+      level: 7
+      category: "it"
+    - name: "Datenbanken: SQL (MariaDB, Teradata, Snowflake)"
+      level: 7
+      category: "it"
+    - name: "BI-Anwendungen"
+      level: 8
+      category: "it"
+    - name: "Datenschutz und Datenqualität"
+      level: 8
+      category: "it"
+
+  languages:
+    - name: "Deutsch"
+      level: 10
+      note: "Muttersprache"
+      category: "languages"
+    - name: "Englisch"
+      level: 9
+      note: "C2 Niveau"
+      category: "languages"
+    - name: "Französisch"
+      level: 9
+      note: "C2 Niveau"
+      category: "languages"
+    - name: "Spanisch"
+      level: 5
+      note: "B1-B2 Niveau"
+      category: "languages"
+    - name: "Niederländisch"
+      level: 3
+      note: "A1 Niveau"
+      category: "languages"
+    - name: "Russisch"
+      level: 2
+      note: "A1 Niveau"
+      category: "languages"
+
+navigation:
+  home: "Startseite"
+  career: "Berufslaufbahn"
+  education: "Bildung"
+  skills: "Fähigkeiten"
+  contact: "Kontakt"
+
+sections:
+  career_carousel: "Berufliche Positionen"
+  academic_carousel: "Akademische Erfolge"
+  career_timeline: "Beruflicher Werdegang"
+  skills_section: "Fähigkeiten & Expertise"
+  management_skills: "Führungskompetenzen"
+  it_skills: "IT-Kenntnisse"
+  language_skills: "Sprachkenntnisse"

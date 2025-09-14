@@ -1,0 +1,181 @@
+---
+layout: default
+title: "Senior Finance Director - Ad fiduciam per factum"
+description: "Ulf Morys - Senior Finance Director with expertise in financial management, strategic planning, and digital transformation"
+---
+
+<!-- Fallback content using Jekyll's server-side rendering -->
+{% assign content_data = site.data.en.content %}
+
+<!-- Hero Section -->
+<section class="hero-section" id="heroSection">
+    <div class="hero-container">
+        <div class="hero-content">
+            <div class="slogan" id="slogan">
+                <h1 class="slogan-latin">{{ content_data.slogan.latin }}</h1>
+                <p class="slogan-translation">{{ content_data.slogan.translation }}</p>
+            </div>
+            <div class="intro" id="intro">
+                <p class="intro-text">{{ content_data.intro.text | newline_to_br }}</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Career Positions Carousel -->
+<section class="carousel-section" id="careerCarouselSection">
+    <div class="section-container">
+        <h2 class="section-title" id="careerCarouselTitle">{{ content_data.sections.career_carousel }}</h2>
+        <div class="carousel-container">
+            <div class="carousel" id="careerCarousel">
+                {% for position in content_data.career_positions %}
+                <div class="carousel-item" onclick="window.location.href='/cv/career/{{ position.id }}/'">
+                    <div class="carousel-card">
+                        <div class="card-logo">
+                            <img src="{{ position.logo }}" alt="{{ position.company }} logo" onerror="this.style.display='none'">
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">{{ position.position }}</h3>
+                            <h4 class="card-company">{{ position.company }}</h4>
+                            <p class="card-duration">{{ position.duration }}</p>
+                        </div>
+                        {% if position.current %}
+                        <div class="current-badge">Current</div>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="carousel-nav">
+                <button class="carousel-btn carousel-prev" id="careerPrev">‹</button>
+                <button class="carousel-btn carousel-next" id="careerNext">›</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Academic Achievements Carousel -->
+<section class="carousel-section" id="academicCarouselSection">
+    <div class="section-container">
+        <h2 class="section-title" id="academicCarouselTitle">{{ content_data.sections.academic_carousel }}</h2>
+        <div class="carousel-container">
+            <div class="carousel" id="academicCarousel">
+                {% for achievement in content_data.academic_achievements %}
+                <div class="carousel-item" onclick="window.location.href='/cv/education/{{ achievement.id }}/'">
+                    <div class="carousel-card">
+                        <div class="card-logo">
+                            <img src="{{ achievement.logo }}" alt="{{ achievement.institution }} logo" onerror="this.style.display='none'">
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">{{ achievement.degree_type }}</h3>
+                            <h4 class="card-institution">{{ achievement.institution }}</h4>
+                            <p class="card-duration">{{ achievement.duration }}</p>
+                            {% if achievement.grade %}
+                            <p class="card-grade">{{ achievement.grade }}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="carousel-nav">
+                <button class="carousel-btn carousel-prev" id="academicPrev">‹</button>
+                <button class="carousel-btn carousel-next" id="academicNext">›</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Career Timeline -->
+<section class="timeline-section" id="timelineSection">
+    <div class="section-container">
+        <h2 class="section-title" id="timelineTitle">{{ content_data.sections.career_timeline }}</h2>
+        <div class="timeline-container">
+            <div class="timeline" id="timeline">
+                {% assign sorted_positions = content_data.career_positions | reverse %}
+                {% for position in sorted_positions %}
+                {% assign index = forloop.index0 %}
+                {% assign is_left = index | modulo: 2 %}
+                <div class="timeline-item {% if is_left == 0 %}timeline-left{% else %}timeline-right{% endif %}">
+                    <div class="timeline-content">
+                        <div class="timeline-date">{{ position.duration }}</div>
+                        <h3 class="timeline-position">{{ position.position }}</h3>
+                        <h4 class="timeline-company">{{ position.company }}</h4>
+                        <p class="timeline-summary">{{ position.summary }}</p>
+                        <a href="/cv/career/{{ position.id }}/" class="timeline-link">Read More →</a>
+                    </div>
+                    <div class="timeline-marker">
+                        {% if position.current %}
+                        <div class="current-indicator"></div>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Skills Section -->
+<section class="skills-section" id="skillsSection">
+    <div class="section-container">
+        <h2 class="section-title" id="skillsTitle">{{ content_data.sections.skills_section }}</h2>
+
+        <!-- Management Skills -->
+        <div class="skill-category" id="managementSkills">
+            <h3 class="skill-category-title" id="managementSkillsTitle">{{ content_data.sections.management_skills }}</h3>
+            <div class="skills-grid" id="managementSkillsGrid">
+                {% for skill in content_data.skills.management %}
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span class="skill-name">{{ skill.name }}</span>
+                        <span class="skill-level">{{ skill.level }}/10</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: {{ skill.level | times: 10 }}%"></div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- IT Skills -->
+        <div class="skill-category" id="itSkills">
+            <h3 class="skill-category-title" id="itSkillsTitle">{{ content_data.sections.it_skills }}</h3>
+            <div class="skills-grid" id="itSkillsGrid">
+                {% for skill in content_data.skills.it %}
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span class="skill-name">{{ skill.name }}</span>
+                        <span class="skill-level">{{ skill.level }}/10</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: {{ skill.level | times: 10 }}%"></div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Language Skills -->
+        <div class="skill-category" id="languageSkills">
+            <h3 class="skill-category-title" id="languageSkillsTitle">{{ content_data.sections.language_skills }}</h3>
+            <div class="skills-grid" id="languageSkillsGrid">
+                {% for skill in content_data.skills.languages %}
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span class="skill-name">{{ skill.name }}</span>
+                        <span class="skill-level">{{ skill.level }}/10</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: {{ skill.level | times: 10 }}%"></div>
+                    </div>
+                    {% if skill.note %}
+                    <div class="skill-note">{{ skill.note }}</div>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>

@@ -191,13 +191,13 @@ class CVWebsite {
         }
 
         try {
-            const response = await fetch(`/_data/${language}/content.yml`);
+            // For GitHub Pages, we need to fetch the data as JSON
+            const response = await fetch(`/cv/assets/data/${language}.json`);
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
 
-            const yamlText = await response.text();
-            const data = jsyaml.load(yamlText);
+            const data = await response.json();
 
             this.contentCache[cacheKey] = data;
             return data;
@@ -225,14 +225,14 @@ class CVWebsite {
             // Update page title and meta description
             this.updatePageMeta(data);
 
-            // Render all sections if functions exist
-            if (typeof renderHeroSection === 'function') renderHeroSection(data);
-            if (typeof renderCareerCarousel === 'function') renderCareerCarousel(data);
-            if (typeof renderAcademicCarousel === 'function') renderAcademicCarousel(data);
-            if (typeof renderTimeline === 'function') renderTimeline(data);
-            if (typeof renderSkills === 'function') renderSkills(data);
-            if (typeof renderFooter === 'function') renderFooter(data);
-            if (typeof updateNavigationText === 'function') updateNavigationText(data.navigation);
+            // Render all sections
+            renderHeroSection(data);
+            renderCareerCarousel(data);
+            renderAcademicCarousel(data);
+            renderTimeline(data);
+            renderSkills(data);
+            renderFooter(data);
+            updateNavigationText(data.navigation);
 
             this.hideLoading();
         } catch (error) {
@@ -310,6 +310,176 @@ class CVWebsite {
     getCurrentLanguage() {
         return this.currentLanguage;
     }
+}
+
+// Render Functions for Main Page
+function renderHeroSection(data) {
+    // Render slogan
+    const sloganHtml = `
+        <h1 class="slogan-latin">${data.slogan.latin}</h1>
+        <p class="slogan-translation">${data.slogan.translation}</p>
+    `;
+    document.getElementById('slogan').innerHTML = sloganHtml;
+
+    // Render intro
+    const introText = data.intro.text.replace(/\n/g, '<br>');
+    document.getElementById('intro').innerHTML = `<p class="intro-text">${introText}</p>`;
+}
+
+function renderCareerCarousel(data) {
+    document.getElementById('careerCarouselTitle').textContent = data.sections.career_carousel;
+
+    const carouselHtml = data.career_positions.map(position => `
+        <div class="carousel-item" onclick="window.location.href='/cv/career/${position.id}/'">
+            <div class="carousel-card">
+                <div class="card-logo">
+                    <img src="${position.logo}" alt="${position.company} logo" onerror="this.style.display='none'">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">${position.position}</h3>
+                    <h4 class="card-company">${position.company}</h4>
+                    <p class="card-duration">${position.duration}</p>
+                </div>
+                ${position.current ? '<div class="current-badge">Current</div>' : ''}
+            </div>
+        </div>
+    `).join('');
+
+    document.getElementById('careerCarousel').innerHTML = carouselHtml;
+
+    // Initialize carousel functionality
+    if (window.carouselManager) {
+        window.carouselManager.initializeCarousel('careerCarousel');
+    }
+}
+
+function renderAcademicCarousel(data) {
+    document.getElementById('academicCarouselTitle').textContent = data.sections.academic_carousel;
+
+    const carouselHtml = data.academic_achievements.map(achievement => `
+        <div class="carousel-item" onclick="window.location.href='/cv/education/${achievement.id}/'">
+            <div class="carousel-card">
+                <div class="card-logo">
+                    <img src="${achievement.logo}" alt="${achievement.institution} logo" onerror="this.style.display='none'">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">${achievement.degree_type}</h3>
+                    <h4 class="card-institution">${achievement.institution}</h4>
+                    <p class="card-duration">${achievement.duration}</p>
+                    ${achievement.grade ? `<p class="card-grade">${achievement.grade}</p>` : ''}
+                </div>
+            </div>
+        </div>
+    `).join('');
+
+    document.getElementById('academicCarousel').innerHTML = carouselHtml;
+
+    // Initialize carousel functionality
+    if (window.carouselManager) {
+        window.carouselManager.initializeCarousel('academicCarousel');
+    }
+}
+
+function renderTimeline(data) {
+    document.getElementById('timelineTitle').textContent = data.sections.career_timeline;
+
+    // Sort positions by start date (most recent first)
+    const sortedPositions = [...data.career_positions].sort((a, b) => {
+        return new Date(b.start_date || '1900-01-01') - new Date(a.start_date || '1900-01-01');
+    });
+
+    const timelineHtml = sortedPositions.map((position, index) => `
+        <div class="timeline-item ${index % 2 === 0 ? 'timeline-left' : 'timeline-right'}">
+            <div class="timeline-content">
+                <div class="timeline-date">${position.duration}</div>
+                <h3 class="timeline-position">${position.position}</h3>
+                <h4 class="timeline-company">${position.company}</h4>
+                <p class="timeline-summary">${position.summary}</p>
+                <a href="/cv/career/${position.id}/" class="timeline-link">Read More →</a>
+            </div>
+            <div class="timeline-marker">
+                ${position.current ? '<div class="current-indicator"></div>' : ''}
+            </div>
+        </div>
+    `).join('');
+
+    document.getElementById('timeline').innerHTML = timelineHtml;
+}
+
+function renderSkills(data) {
+    document.getElementById('skillsTitle').textContent = data.sections.skills_section;
+    document.getElementById('managementSkillsTitle').textContent = data.sections.management_skills;
+    document.getElementById('itSkillsTitle').textContent = data.sections.it_skills;
+    document.getElementById('languageSkillsTitle').textContent = data.sections.language_skills;
+
+    // Render management skills
+    const managementHtml = data.skills.management.map(skill => `
+        <div class="skill-item">
+            <div class="skill-header">
+                <span class="skill-name">${skill.name}</span>
+                <span class="skill-level">${skill.level}/10</span>
+            </div>
+            <div class="skill-bar">
+                <div class="skill-progress" style="width: ${skill.level * 10}%"></div>
+            </div>
+        </div>
+    `).join('');
+    document.getElementById('managementSkillsGrid').innerHTML = managementHtml;
+
+    // Render IT skills
+    const itHtml = data.skills.it.map(skill => `
+        <div class="skill-item">
+            <div class="skill-header">
+                <span class="skill-name">${skill.name}</span>
+                <span class="skill-level">${skill.level}/10</span>
+            </div>
+            <div class="skill-bar">
+                <div class="skill-progress" style="width: ${skill.level * 10}%"></div>
+            </div>
+        </div>
+    `).join('');
+    document.getElementById('itSkillsGrid').innerHTML = itHtml;
+
+    // Render language skills
+    const languageHtml = data.skills.languages.map(skill => `
+        <div class="skill-item">
+            <div class="skill-header">
+                <span class="skill-name">${skill.name}</span>
+                <span class="skill-level">${skill.level}/10</span>
+            </div>
+            <div class="skill-bar">
+                <div class="skill-progress" style="width: ${skill.level * 10}%"></div>
+            </div>
+            ${skill.note ? `<div class="skill-note">${skill.note}</div>` : ''}
+        </div>
+    `).join('');
+    document.getElementById('languageSkillsGrid').innerHTML = languageHtml;
+}
+
+function renderFooter(data) {
+    const footerHtml = `
+        <div class="contact-info">
+            <a href="mailto:${data.contact.email}" class="contact-link">
+                <span class="contact-icon">✉</span>
+                ${data.contact.email}
+            </a>
+            <a href="${data.contact.linkedin}" target="_blank" rel="noopener" class="contact-link">
+                <span class="contact-icon">in</span>
+                LinkedIn
+            </a>
+        </div>
+    `;
+    document.getElementById('footerContact').innerHTML = footerHtml;
+}
+
+function updateNavigationText(navigation) {
+    const navLinks = document.querySelectorAll('[data-nav]');
+    navLinks.forEach(link => {
+        const navKey = link.getAttribute('data-nav');
+        if (navigation[navKey]) {
+            link.textContent = navigation[navKey];
+        }
+    });
 }
 
 // Carousel functionality
