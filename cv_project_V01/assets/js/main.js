@@ -191,8 +191,9 @@ class CVWebsite {
         }
 
         try {
-            // For GitHub Pages, we need to fetch the data as JSON
-            const response = await fetch(`/cv/assets/data/${language}.json`);
+            // Get the base URL from the page - Jekyll will set this correctly
+            const baseUrl = document.querySelector('meta[name="base-url"]')?.content || '';
+            const response = await fetch(`${baseUrl}/assets/data/${language}.json`);
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
@@ -329,11 +330,12 @@ function renderHeroSection(data) {
 function renderCareerCarousel(data) {
     document.getElementById('careerCarouselTitle').textContent = data.sections.career_carousel;
 
+    const baseUrl = document.querySelector('meta[name="base-url"]')?.content || '';
     const carouselHtml = data.career_positions.map(position => `
-        <div class="carousel-item" onclick="window.location.href='/cv/career/${position.id}/'">
+        <div class="carousel-item" onclick="window.location.href='${baseUrl}/career/${position.id}/'">
             <div class="carousel-card">
                 <div class="card-logo">
-                    <img src="${position.logo}" alt="${position.company} logo" onerror="this.style.display='none'">
+                    <img src="${baseUrl}${position.logo}" alt="${position.company} logo" onerror="this.style.display='none'">
                 </div>
                 <div class="card-content">
                     <h3 class="card-title">${position.position}</h3>
@@ -356,11 +358,12 @@ function renderCareerCarousel(data) {
 function renderAcademicCarousel(data) {
     document.getElementById('academicCarouselTitle').textContent = data.sections.academic_carousel;
 
+    const baseUrl = document.querySelector('meta[name="base-url"]')?.content || '';
     const carouselHtml = data.academic_achievements.map(achievement => `
-        <div class="carousel-item" onclick="window.location.href='/cv/education/${achievement.id}/'">
+        <div class="carousel-item" onclick="window.location.href='${baseUrl}/education/${achievement.id}/'">
             <div class="carousel-card">
                 <div class="card-logo">
-                    <img src="${achievement.logo}" alt="${achievement.institution} logo" onerror="this.style.display='none'">
+                    <img src="${baseUrl}${achievement.logo}" alt="${achievement.institution} logo" onerror="this.style.display='none'">
                 </div>
                 <div class="card-content">
                     <h3 class="card-title">${achievement.degree_type}</h3>
@@ -388,6 +391,7 @@ function renderTimeline(data) {
         return new Date(b.start_date || '1900-01-01') - new Date(a.start_date || '1900-01-01');
     });
 
+    const baseUrl = document.querySelector('meta[name="base-url"]')?.content || '';
     const timelineHtml = sortedPositions.map((position, index) => `
         <div class="timeline-item ${index % 2 === 0 ? 'timeline-left' : 'timeline-right'}">
             <div class="timeline-content">
@@ -395,7 +399,7 @@ function renderTimeline(data) {
                 <h3 class="timeline-position">${position.position}</h3>
                 <h4 class="timeline-company">${position.company}</h4>
                 <p class="timeline-summary">${position.summary}</p>
-                <a href="/cv/career/${position.id}/" class="timeline-link">Read More →</a>
+                <a href="${baseUrl}/career/${position.id}/" class="timeline-link">Read More →</a>
             </div>
             <div class="timeline-marker">
                 ${position.current ? '<div class="current-indicator"></div>' : ''}

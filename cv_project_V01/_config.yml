@@ -1,8 +1,8 @@
 # Jekyll Configuration for GitHub Pages
 title: "Ulf Morys - Senior Finance Director"
 description: "Ad fiduciam per factum - Trust thru results"
-url: ""
-baseurl: ""
+url: "https://ulf-morys.github.io"
+baseurl: "/cv"
 
 # Build settings
 markdown: kramdown
