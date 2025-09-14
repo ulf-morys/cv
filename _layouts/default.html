@@ -7,6 +7,7 @@
 
     <title>{% if page.title %}{{ page.title }} - {% endif %}{{ site.title }}</title>
     <meta name="description" content="{{ page.description | default: site.description | strip_html | normalize_whitespace | truncate: 160 | escape }}">
+    <meta name="base-url" content="{{ site.baseurl }}">
 
     <!-- SEO -->
     {% seo %}
@@ -84,8 +85,8 @@
         </div>
     </footer>
 
-    <!-- JavaScript -->
-    <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
+    <!-- JavaScript - disabled to prevent errors, using inline scripts instead -->
+    <!-- <script src="{{ '/assets/js/main.js' | relative_url }}"></script> -->
 
     <!-- Analytics (if needed) -->
     {% if site.google_analytics %}
