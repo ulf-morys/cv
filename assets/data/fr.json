@@ -1,0 +1,72 @@
+{
+  "slogan": {
+    "latin": "Ad fiduciam per factum",
+    "translation": "La confiance par les résultats"
+  },
+  "intro": {
+    "text": "Je suis un cadre supérieur orienté finances au cœur, équipé d'un état d'esprit agile, animé par un esprit entrepreneurial, une pensée stratégique et une passion pour la digitalisation, avec un historique avéré de direction d'équipes servant de partenaires commerciaux fiables et de confiance qui fournissent un soutien optimal aux activités métier par :\n• des processus qui fonctionnent simplement et produisent des résultats\n• des insights actionnables pour la prise de décision\n• le soutien au changement dans toute l'organisation"
+  },
+  "navigation": {
+    "home": "Accueil",
+    "career": "Carrière",
+    "education": "Formation",
+    "skills": "Compétences",
+    "contact": "Contact"
+  },
+  "sections": {
+    "career_carousel": "Postes Professionnels",
+    "academic_carousel": "Réussites Académiques",
+    "career_timeline": "Chronologie Professionnelle",
+    "skills_section": "Compétences",
+    "management_skills": "Compétences de Gestion",
+    "it_skills": "Compétences IT",
+    "language_skills": "Compétences Linguistiques"
+  },
+  "career_positions": [
+    {
+      "id": "ubisoft-accounting-director-2024",
+      "company": "Ubisoft GmbH",
+      "location": "Düsseldorf",
+      "position": "Senior Accounting Director EMEA",
+      "start_date": "Juillet 2024",
+      "end_date": "Présent",
+      "current": true,
+      "duration": "Juillet 2024 - Présent",
+      "logo": "/assets/images/ubisoft-logo.png",
+      "summary": "Direction des opérations comptables dans la région EMEA avec un focus sur la transformation digitale et l'optimisation des processus."
+    }
+  ],
+  "academic_achievements": [
+    {
+      "id": "wirtschaftsingenieurwesen-darmstadt",
+      "institution": "TU Darmstadt",
+      "location": "Darmstadt, Allemagne",
+      "degree_type": "Diplom-Wirtschaftsingenieur",
+      "course_title": "Ingénierie Commerciale",
+      "start_date": "1989",
+      "end_date": "1996",
+      "duration": "1989 - 1996",
+      "logo": "/assets/images/tu-darmstadt-logo.png",
+      "description": "Programme d'études complet combinant ingénierie et administration des affaires."
+    }
+  ],
+  "skills": {
+    "management": [
+      {"name": "Planification Stratégique", "level": 9},
+      {"name": "Leadership d'Équipe", "level": 9}
+    ],
+    "it": [
+      {"name": "SAP", "level": 8},
+      {"name": "Excel", "level": 9}
+    ],
+    "languages": [
+      {"name": "Allemand", "level": 10, "note": "Langue Maternelle"},
+      {"name": "Anglais", "level": 9},
+      {"name": "Français", "level": 8}
+    ]
+  },
+  "contact": {
+    "email": "mail@morys.net",
+    "linkedin": "https://www.linkedin.com/in/ulfmorys/"
+  }
+}

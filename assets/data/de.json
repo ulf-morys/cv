@@ -1,0 +1,71 @@
+{
+  "slogan": {
+    "latin": "Ad fiduciam per factum",
+    "translation": "Vertrauen durch Ergebnisse"
+  },
+  "intro": {
+    "text": "Ich bin eine erfahrene Führungskraft, die im Herzen finanziell orientiert ist, mit einer agilen Denkweise ausgestattet, getrieben von unternehmerischem Geist, strategischem Denken und einer Leidenschaft für Digitalisierung, sporting a track record of leading teams serving as reliable and trusted business partners that provide optimum support to the line business thru:\n• Prozesse, die einfach funktionieren & Ergebnisse produzieren\n• Handlungsorientierte Erkenntnisse für Entscheidungsfindung\n• Unterstützung von Veränderungen in der gesamten Organisation"
+  },
+  "navigation": {
+    "home": "Startseite",
+    "career": "Berufslaufbahn",
+    "education": "Bildung",
+    "skills": "Fähigkeiten",
+    "contact": "Kontakt"
+  },
+  "sections": {
+    "career_carousel": "Berufliche Positionen",
+    "academic_carousel": "Akademische Erfolge",
+    "career_timeline": "Beruflicher Werdegang",
+    "skills_section": "Fähigkeiten",
+    "management_skills": "Führungskompetenzen",
+    "it_skills": "IT-Kenntnisse",
+    "language_skills": "Sprachkenntnisse"
+  },
+  "career_positions": [
+    {
+      "id": "ubisoft-accounting-director-2024",
+      "company": "Ubisoft GmbH",
+      "location": "Düsseldorf",
+      "position": "Senior Accounting Director EMEA",
+      "start_date": "Juli 2024",
+      "end_date": "Heute",
+      "current": true,
+      "duration": "Juli 2024 - Heute",
+      "logo": "/assets/images/ubisoft-logo.png",
+      "summary": "Leitung der Buchhaltungsoperationen in der EMEA-Region mit Fokus auf digitale Transformation und Prozessoptimierung."
+    }
+  ],
+  "academic_achievements": [
+    {
+      "id": "wirtschaftsingenieurwesen-darmstadt",
+      "institution": "TU Darmstadt",
+      "location": "Darmstadt, Deutschland",
+      "degree_type": "Diplom-Wirtschaftsingenieur",
+      "course_title": "Wirtschaftsingenieurwesen",
+      "start_date": "1989",
+      "end_date": "1996",
+      "duration": "1989 - 1996",
+      "logo": "/assets/images/tu-darmstadt-logo.png",
+      "description": "Umfassendes Studienprogramm, das Ingenieurwissenschaften und Betriebswirtschaft kombiniert."
+    }
+  ],
+  "skills": {
+    "management": [
+      {"name": "Strategische Planung", "level": 9},
+      {"name": "Teamführung", "level": 9}
+    ],
+    "it": [
+      {"name": "SAP", "level": 8},
+      {"name": "Excel", "level": 9}
+    ],
+    "languages": [
+      {"name": "Deutsch", "level": 10, "note": "Muttersprache"},
+      {"name": "Englisch", "level": 9}
+    ]
+  },
+  "contact": {
+    "email": "mail@morys.net",
+    "linkedin": "https://www.linkedin.com/in/ulfmorys/"
+  }
+}

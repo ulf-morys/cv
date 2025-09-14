@@ -1,0 +1,71 @@
+{
+  "slogan": {
+    "latin": "Ad fiduciam per factum",
+    "translation": "Trust thru results"
+  },
+  "intro": {
+    "text": "I am senior managager who is financially oriented at heart, equipped with an agile mindset, driven by an entrepreneurial spirit, strategic thinking and a passion for digitalization, sporting a track record of leading teams serving as reliable and trusted business partners that provide optimum support to the line business thru:\n• processes that simply work & produce results\n• actionable insights for decision making\n• supporting change throughout the organization"
+  },
+  "navigation": {
+    "home": "Home",
+    "career": "Career",
+    "education": "Education",
+    "skills": "Skills",
+    "contact": "Contact"
+  },
+  "sections": {
+    "career_carousel": "Career Positions",
+    "academic_carousel": "Academic Achievements",
+    "career_timeline": "Career Timeline",
+    "skills_section": "Skills",
+    "management_skills": "Management Skills",
+    "it_skills": "IT Skills",
+    "language_skills": "Language Skills"
+  },
+  "career_positions": [
+    {
+      "id": "ubisoft-accounting-director-2024",
+      "company": "Ubisoft GmbH",
+      "location": "Düsseldorf",
+      "position": "Senior Accounting Director EMEA",
+      "start_date": "July 2024",
+      "end_date": "Present",
+      "current": true,
+      "duration": "July 2024 - Present",
+      "logo": "/assets/images/ubisoft-logo.png",
+      "summary": "Leading accounting operations across EMEA region with focus on digital transformation and process optimization."
+    }
+  ],
+  "academic_achievements": [
+    {
+      "id": "wirtschaftsingenieurwesen-darmstadt",
+      "institution": "TU Darmstadt",
+      "location": "Darmstadt, Germany",
+      "degree_type": "Diplom-Wirtschaftsingenieur",
+      "course_title": "Business Engineering",
+      "start_date": "1989",
+      "end_date": "1996",
+      "duration": "1989 - 1996",
+      "logo": "/assets/images/tu-darmstadt-logo.png",
+      "description": "Comprehensive study program combining engineering and business administration."
+    }
+  ],
+  "skills": {
+    "management": [
+      {"name": "Strategic Planning", "level": 9},
+      {"name": "Team Leadership", "level": 9}
+    ],
+    "it": [
+      {"name": "SAP", "level": 8},
+      {"name": "Excel", "level": 9}
+    ],
+    "languages": [
+      {"name": "German", "level": 10, "note": "Native"},
+      {"name": "English", "level": 9}
+    ]
+  },
+  "contact": {
+    "email": "mail@morys.net",
+    "linkedin": "https://www.linkedin.com/in/ulfmorys/"
+  }
+}
