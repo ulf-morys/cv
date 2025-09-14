@@ -406,19 +406,52 @@ description: "Ulf Morys - Senior Finance Director with expertise in financial ma
 <script>
 // Initialize essential functionality only - keep static content
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize carousel functionality
-    if (window.carouselManager) {
-        setTimeout(() => {
-            window.carouselManager.setupCarousels();
-        }, 100);
-    }
+    console.log('CV Website loaded with static content - no dynamic loading');
 
-    // Initialize language selector without content loading
-    if (window.cvWebsite) {
-        window.cvWebsite.initializeLanguageSelector();
-        window.cvWebsite.initializeNavigation();
-    }
+    // Initialize carousel functionality directly without complex managers
+    initSimpleCarousels();
 
-    console.log('CV Website initialized with static content');
+    // Hide any loading spinners that might be showing
+    const loadingSpinner = document.getElementById('loadingSpinner');
+    if (loadingSpinner) {
+        loadingSpinner.style.display = 'none';
+    }
 });
+
+// Simple carousel functionality that doesn't depend on external classes
+function initSimpleCarousels() {
+    ['career', 'academic'].forEach(type => {
+        const carousel = document.getElementById(`${type}Carousel`);
+        const prevBtn = document.getElementById(`${type}Prev`);
+        const nextBtn = document.getElementById(`${type}Next`);
+
+        if (carousel && prevBtn && nextBtn) {
+            let currentIndex = 0;
+            const items = carousel.querySelectorAll('.carousel-item');
+            const itemsPerView = window.innerWidth < 768 ? 1 : (window.innerWidth < 1024 ? 2 : 3);
+
+            function updateCarousel() {
+                const translateX = -(currentIndex * (100 / itemsPerView));
+                carousel.style.transform = `translateX(${translateX}%)`;
+            }
+
+            prevBtn.addEventListener('click', () => {
+                if (currentIndex > 0) {
+                    currentIndex--;
+                    updateCarousel();
+                }
+            });
+
+            nextBtn.addEventListener('click', () => {
+                const maxIndex = Math.max(0, items.length - itemsPerView);
+                if (currentIndex < maxIndex) {
+                    currentIndex++;
+                    updateCarousel();
+                }
+            });
+
+            updateCarousel();
+        }
+    });
+}
 </script>

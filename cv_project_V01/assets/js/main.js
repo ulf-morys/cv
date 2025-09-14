@@ -769,9 +769,9 @@ window.hideLoading = function() {
     window.cvWebsite?.hideLoading();
 };
 
-// Initialize everything when DOM is ready
+// Initialize everything when DOM is ready - but don't auto-load content
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize main website functionality
+    // Initialize main website functionality (but don't auto-load content)
     window.cvWebsite = new CVWebsite();
 
     // Initialize carousel manager
@@ -783,7 +783,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize performance optimizations
     window.performanceManager = new PerformanceManager();
 
-    console.log('CV Website initialized successfully');
+    console.log('CV Website initialized (static mode)');
 });
 
 // Handle page visibility changes for performance
