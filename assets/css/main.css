@@ -327,6 +327,7 @@ a:hover {
 .carousel-container {
     position: relative;
     overflow: hidden;
+    padding: 0 60px; /* Add space for absolute positioned buttons */
 }
 
 .carousel {
@@ -422,17 +423,29 @@ a:hover {
     display: flex;
     align-items: center;
     justify-content: center;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+}
+
+.carousel-prev {
+    left: 10px;
+}
+
+.carousel-next {
+    right: 10px;
 }
 
 .carousel-btn:hover {
     background: var(--highlight);
-    transform: scale(1.1);
+    transform: translateY(-50%) scale(1.1);
 }
 
 .carousel-btn:disabled {
     background: var(--text-muted);
     cursor: not-allowed;
-    transform: none;
+    transform: translateY(-50%);
 }
 
 /* Timeline Styles */

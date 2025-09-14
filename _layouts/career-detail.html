@@ -2,6 +2,25 @@
 layout: default
 ---
 
+<!-- Embed YAML data for detail page -->
+<script>
+// Ensure site data is available for detail pages
+if (!window.siteData) {
+    console.log('Embedding YAML data for detail page...');
+    try {
+        window.siteData = {
+            en: {{ site.data.en.content | jsonify }},
+            de: {{ site.data.de.content | jsonify }},
+            fr: {{ site.data.fr.content | jsonify }}
+        };
+        console.log('Detail page YAML data embedded successfully');
+    } catch (error) {
+        console.error('Error embedding YAML data in detail page:', error);
+        window.siteData = null;
+    }
+}
+</script>
+
 <article class="career-detail">
     <div class="detail-container">
         <!-- Breadcrumb -->
@@ -39,16 +58,35 @@ layout: default
 
 <script>
     // Initialize career detail page
-    document.addEventListener('DOMContentLoaded', function() {
+    function initCareerDetailPage() {
+        console.log('Initializing career detail page...');
+
         const urlPath = window.location.pathname;
         const positionId = urlPath.split('/').filter(Boolean).pop();
+
+        console.log('Career detail init:', {
+            urlPath: urlPath,
+            positionId: positionId,
+            siteDataAvailable: !!window.siteData,
+            globalFunctionsAvailable: {
+                getCurrentLanguage: typeof getCurrentLanguage,
+                loadContentData: typeof loadContentData
+            }
+        });
 
         if (positionId) {
             loadCareerDetail(positionId);
         } else {
+            console.error('No position ID found in URL');
             // Redirect to home if no valid position ID
-            window.location.href = '/';
+            const baseUrl = document.querySelector('meta[name="base-url"]')?.content || '';
+            window.location.href = baseUrl + '/';
         }
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        // Wait a bit for main.js to load global functions
+        setTimeout(initCareerDetailPage, 100);
     });
 
     async function loadCareerDetail(positionId) {

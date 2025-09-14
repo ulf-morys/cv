@@ -2,6 +2,25 @@
 layout: default
 ---
 
+<!-- Embed YAML data for detail page -->
+<script>
+// Ensure site data is available for detail pages
+if (!window.siteData) {
+    console.log('Embedding YAML data for education detail page...');
+    try {
+        window.siteData = {
+            en: {{ site.data.en.content | jsonify }},
+            de: {{ site.data.de.content | jsonify }},
+            fr: {{ site.data.fr.content | jsonify }}
+        };
+        console.log('Education detail page YAML data embedded successfully');
+    } catch (error) {
+        console.error('Error embedding YAML data in education detail page:', error);
+        window.siteData = null;
+    }
+}
+</script>
+
 <article class="education-detail">
     <div class="detail-container">
         <!-- Breadcrumb -->
@@ -39,16 +58,35 @@ layout: default
 
 <script>
     // Initialize education detail page
-    document.addEventListener('DOMContentLoaded', function() {
+    function initEducationDetailPage() {
+        console.log('Initializing education detail page...');
+
         const urlPath = window.location.pathname;
         const achievementId = urlPath.split('/').filter(Boolean).pop();
+
+        console.log('Education detail init:', {
+            urlPath: urlPath,
+            achievementId: achievementId,
+            siteDataAvailable: !!window.siteData,
+            globalFunctionsAvailable: {
+                getCurrentLanguage: typeof getCurrentLanguage,
+                loadContentData: typeof loadContentData
+            }
+        });
 
         if (achievementId) {
             loadEducationDetail(achievementId);
         } else {
+            console.error('No achievement ID found in URL');
             // Redirect to home if no valid achievement ID
-            window.location.href = '/';
+            const baseUrl = document.querySelector('meta[name="base-url"]')?.content || '';
+            window.location.href = baseUrl + '/';
         }
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        // Wait a bit for main.js to load global functions
+        setTimeout(initEducationDetailPage, 100);
     });
 
     async function loadEducationDetail(achievementId) {
