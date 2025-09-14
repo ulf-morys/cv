@@ -12,13 +12,10 @@ class CVWebsite {
 
     async init() {
         this.setupEventListeners();
-        this.initializeLanguageSelector();
-        this.initializeNavigation();
+        // Don't auto-initialize selectors here - let the page script handle it
 
-        // Load content if on main page
-        if (this.isMainPage()) {
-            await this.loadAndRenderContent();
-        }
+        // Don't auto-load content - only load when explicitly requested
+        console.log('CVWebsite initialized');
     }
 
     setupEventListeners() {
@@ -501,11 +498,9 @@ class CarouselManager {
     }
 
     setupCarousels() {
-        const carouselElements = document.querySelectorAll('.carousel');
-        carouselElements.forEach((carousel, index) => {
-            const id = carousel.id || `carousel-${index}`;
-            this.initializeCarousel(id);
-        });
+        // Initialize both main carousels
+        this.initializeCarousel('careerCarousel');
+        this.initializeCarousel('academicCarousel');
     }
 
     initializeCarousel(carouselId) {
