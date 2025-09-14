@@ -1,0 +1,36 @@
+---
+layout: null
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+    <!-- Main page -->
+    <url>
+        <loc>{{ site.url }}{{ site.baseurl }}/</loc>
+        <lastmod>{{ site.time | date_to_xmlschema }}</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+        <xhtml:link rel="alternate" hreflang="en" href="{{ site.url }}{{ site.baseurl }}/en/"/>
+        <xhtml:link rel="alternate" hreflang="de" href="{{ site.url }}{{ site.baseurl }}/de/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="{{ site.url }}{{ site.baseurl }}/fr/"/>
+    </url>
+
+    <!-- Career pages -->
+    {% for career in site.career %}
+    <url>
+        <loc>{{ site.url }}{{ site.baseurl }}{{ career.url }}</loc>
+        <lastmod>{{ career.date | default: site.time | date_to_xmlschema }}</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    {% endfor %}
+
+    <!-- Education pages -->
+    {% for education in site.education %}
+    <url>
+        <loc>{{ site.url }}{{ site.baseurl }}{{ education.url }}</loc>
+        <lastmod>{{ education.date | default: site.time | date_to_xmlschema }}</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    {% endfor %}
+</urlset>

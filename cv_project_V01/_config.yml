@@ -1,0 +1,50 @@
+# Jekyll Configuration for GitHub Pages
+title: "Ulf Morys - Senior Finance Director"
+description: "Ad fiduciam per factum - Trust thru results"
+url: ""
+baseurl: ""
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+plugins:
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# Collections
+collections:
+  career:
+    output: true
+    permalink: /career/:name/
+  education:
+    output: true
+    permalink: /education/:name/
+
+# Default settings
+defaults:
+  - scope:
+      path: ""
+      type: "career"
+    values:
+      layout: "career-detail"
+  - scope:
+      path: ""
+      type: "education"
+    values:
+      layout: "education-detail"
+
+# Exclude from processing
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+
+# Site settings
+timezone: Europe/Berlin
+encoding: UTF-8
+
+# Language settings
+languages: ["en", "de", "fr"]
+default_language: "en"

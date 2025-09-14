@@ -1,0 +1,327 @@
+# English Content Data
+slogan:
+  latin: "Ad fiduciam per factum"
+  translation: "Trust thru results"
+
+intro:
+  text: |
+    I am senior managager who is financially oriented at
+    heart, equipped with an agile mindset, driven by an
+    entrepreneurial spirit, strategic thinking and a passion
+    for digitalization, sporting a track record of leading
+    teams serving as reliable and trusted business
+    partners that provide optimum support to the line
+    business thru:
+    • processes that simply work & produce results
+    • actionable insights for decision making
+    • supporting change throughout the organization
+
+contact:
+  email: "mail@morys.net"
+  linkedin: "https://www.linkedin.com/in/ulfmorys/"
+
+career_positions:
+  - id: "ubisoft-accounting-director-2024"
+    company: "Ubisoft GmbH"
+    location: "Düsseldorf"
+    position: "Senior Accounting Director EMEA"
+    start_date: "July 2024"
+    end_date: "Present"
+    current: true
+    duration: "July 2024 - Present"
+    logo: "/assets/images/ubisoft-logo.png"
+    summary: "Leading accounting, treasury, tax, compliance, statutory and corporate matters for Ubisoft activities in EMEA"
+    responsibilities:
+      - "Leading accounting, treasury, tax, compliance, statutory and corporate matters for Ubisoft activities in EMEA (ex France) managing an international team of 16."
+      - "Transition from an entity-based to a service center model for accounting."
+      - "Spearhead AI deployment in the Finance function."
+      - "Prepare major ERP update to cloud-based ERP."
+      - "Support corporate decluttering and restructuring efforts to lower overhead costs."
+    achievements: []
+    team_size: 16
+    revenue_responsibility: ""
+
+  - id: "ubisoft-finance-director-2013"
+    company: "Ubisoft GmbH"
+    location: "Düsseldorf"
+    position: "Finance Director Publishing Central Europe"
+    start_date: "April 2013"
+    end_date: "June 2024"
+    current: false
+    duration: "April 2013 – June 2024"
+    logo: "/assets/images/ubisoft-logo.png"
+    summary: "Leading FP&A, accounting, treasury, tax, compliance for marketing & distribution activities in GSA and Eastern Europe"
+    responsibilities:
+      - "Leading FP&A, accounting, treasury, tax, compliance, statutory and corporate matters for marketing & distribution activities in GSA (Germany, Switzerland, Austria) and Eastern Europe (Poland, Czech Republic, Slovakia and Hungary) with T/O responsibility in the 150-200 Mio. € range, headcount ca. 80), managing a team of 9."
+      - "Monthly, semester and FY closures under local GAP (HGB) and IFRS."
+      - "Regular rolling forecasts on the entire local P&L, analysing gaps vs. planned KPIs."
+      - "Point of contact internally (corporate finance, IT-integration, tax, legal and treasury) and externally (banks, auditors, authorities) in all finance, tax, statutory, corporate, privacy or legal matters."
+      - "Assumed leadership of HR functions during departmental restructuring, ensuring uninterrupted support for 60+ employees."
+      - "Designated Data Protection Officer & Data Evangelist, promoting data driven, digital & agile solutions & culture."
+      - "Opening and closing country offices (AT, CH, PL, DK), depending on market evolution, and creating / liquidating corresponding legal structures."
+    achievements:
+      - "Initiated and/or supported corporate decluttering and M&A activities, e.g. resulting in tax saving > 1.5 Mio €."
+      - "Identified and negotiated major cost savings on operational costs (ca. 0,5 Mio. € p.a)."
+    team_size: 9
+    revenue_responsibility: "150-200 Mio. €"
+
+  - id: "ubisoft-finance-director-germany-2009"
+    company: "Ubisoft GmbH"
+    location: "Düsseldorf"
+    position: "Finance Director Germany"
+    start_date: "January 2009"
+    end_date: "March 2013"
+    current: false
+    duration: "January 2009 – March 2013"
+    logo: "/assets/images/ubisoft-logo.png"
+    summary: "Leading FP&A, accounting, treasury, tax, compliance for marketing & distribution activities in Germany and Austria"
+    responsibilities:
+      - "Leading FP&A, accounting, treasury, tax, compliance, statutory and corporate matters for marketing & distribution activities in Germany and Austria with T/O responsibility in the 90-150 Mio. € range, headcount ca. 70), managing a team of 8"
+      - "Simultaneously providing the same finance services to the local Production entity, Ubisoft Blue Byte Studio GmbH, with a headcount in the 90-120 HC range."
+    achievements: []
+    team_size: 8
+    revenue_responsibility: "90-150 Mio. €"
+
+  - id: "ama-sales-director-2006"
+    company: "AMA Ltd. - Advanced Mobile Applications"
+    location: "Düsseldorf"
+    position: "Sales Director, Central & Northern Europe"
+    start_date: "October 2006"
+    end_date: "October 2008"
+    current: false
+    duration: "October 2006 - October 2008"
+    logo: "/assets/images/ama-logo.png"
+    summary: "Build and grew the sales for AMA's mobile applications in 9 Central and Northern European countries"
+    responsibilities:
+      - "Build and grew the sales for AMA's mobile applications (same founder background as Gameloft and Ubisoft.) in 9 Central and Northern European countries via operators, B2C distribution channels and major handset manufacturers, taking revenue from 0 to the 1 Mio. range."
+    achievements:
+      - "Increased market share and brand awareness of AMA's portfolio within the mobile content segment from 0 to the +20% range."
+    team_size: 0
+    revenue_responsibility: "0 to 1 Mio €"
+
+  - id: "gameloft-general-manager-2000"
+    company: "Gameloft GmbH"
+    location: "Düsseldorf"
+    position: "General Manager"
+    start_date: "October 2000"
+    end_date: "September 2008"
+    current: false
+    duration: "October 2000 - September 2008"
+    logo: "/assets/images/gameloft-logo.png"
+    summary: "Built market leader position in mobile games creating operations from scratch"
+    responsibilities:
+      - "01/2006-09/2006, global responsibility for business development activities on new platforms; prepared entry into new markets, establishing new revenue streams, e.g. handset embedding, online consoles & new Apple eco-system."
+      - "Until 12/2005 building a market leader position in mobile games via creating operations & customer relationships in GSA and neighbouring markets for the portfolio of WAP, PDA and JAVA games from scratch; management of the workforce (sales, marketing and operations; max. team size 8 persons)."
+    achievements:
+      - "Achieved profitability of local operations from day one on and grew T/O to > 5Mio €/annum and thus contributed to valuation increase of group to > 500 Mio. €."
+    team_size: 8
+    revenue_responsibility: "> 5 Mio €"
+
+  - id: "otelo-team-leader-1997"
+    company: "o.tel.o communications"
+    location: "Cologne"
+    position: "Team Leader Controlling"
+    start_date: "August 1997"
+    end_date: "September 2000"
+    current: false
+    duration: "August 1997 - September 2000"
+    logo: "/assets/images/otelo-logo.png"
+    summary: "Head of interconnection & leased lines controlling/traffic management"
+    responsibilities:
+      - "From July 1999: Head of interconnection & leased lines controlling/traffic management , managing interconnetion volume in the 100 Mio. EUR range with team of 4 people."
+      - "Until June 1999: Team leader invest / CAPEX controlling."
+    achievements:
+      - "Optimized the largest single cost item of the company, substantially decreasing interconnection & leased line fees (ca. 1 Mio. €/month)."
+    team_size: 4
+    revenue_responsibility: "100 Mio. EUR"
+
+  - id: "babcock-trainee-1995"
+    company: "Deutsche Babcock AG"
+    location: "Oberhausen"
+    position: "Trainee / Personal Assistant to group CFO"
+    start_date: "June 1995"
+    end_date: "July 1997"
+    current: false
+    duration: "June 1995 - July 1997"
+    logo: "/assets/images/babcock-logo.png"
+    summary: "Personal assistant to group CFO and member of Group Strategy and M&A"
+    responsibilities:
+      - "Personal assistant to group CFO (group T/O in 4 billion EUR range)."
+      - "Member of Group Strategy and M&A, participating in major acquisition and divestment activities."
+      - "Project leader \"Babcock in the Internet\", creating first market news & alert database."
+    achievements:
+      - "Instrumental in a > 40 Mio EUR reduction of the purchase price for a target company during a merger process."
+    team_size: 0
+    revenue_responsibility: "4 billion EUR"
+
+  - id: "loreal-controller-1994"
+    company: "L'Oréal Germany"
+    location: "Duesseldorf"
+    position: "Divisional Junior Controller"
+    start_date: "January 1994"
+    end_date: "May 1995"
+    current: false
+    duration: "January 1994 - May 1995"
+    logo: "/assets/images/loreal-logo.png"
+    summary: "Budgeting, planning, cost control and group reporting for Coiffure division"
+    responsibilities:
+      - "Budgeting, planning, cost control and group reporting \"Coiffure\" division with a T/O-volume in the 50 Mio € range."
+    achievements: []
+    team_size: 0
+    revenue_responsibility: "50 Mio €"
+
+academic_achievements:
+  - id: "wirtschaftsingenieurwesen-darmstadt"
+    institution: "Technische Hochschule Darmstadt"
+    location: "Darmstadt"
+    degree_type: "Master in Mechanical Engineering Option"
+    course_title: "Studies of Economic Engineering (Wirtschaftsingenieurwesen)"
+    start_date: ""
+    end_date: "1993"
+    duration: "1993"
+    grade: "1,9 GPA on 1-6 scale"
+    logo: "/assets/images/tu-darmstadt-logo.png"
+    description: "Studies of Economic Engineering (Wirtschaftsingenieurwesen)"
+
+  - id: "genie-industriel-grenoble"
+    institution: "ENSGI (Ecole Nationale Supérieure de Génie Industriel)"
+    location: "Grenoble, France"
+    degree_type: "Engineering Degree"
+    course_title: "Economic Engineering (Génie Industriel)"
+    start_date: ""
+    end_date: "1991"
+    duration: "1991"
+    grade: ""
+    logo: "/assets/images/ensgi-logo.png"
+    description: "Economic Engineering (Génie Industriel)"
+
+  - id: "military-service"
+    institution: "German Air Force (Luftwaffe)"
+    location: ""
+    degree_type: "Military Service"
+    course_title: "Military Service"
+    start_date: "October 1986"
+    end_date: "July 1987"
+    duration: "October 1986 - July 1987"
+    grade: ""
+    logo: "/assets/images/luftwaffe-logo.png"
+    description: "Military Service in German Air Force (Luftwaffe)"
+
+  - id: "abitur-duesseldorf"
+    institution: "Städtisches Görresgymnasium"
+    location: "Duesseldorf"
+    degree_type: "A-Levels / German High School Graduation"
+    course_title: "A-Levels / German High School Graduation"
+    start_date: ""
+    end_date: "1986"
+    duration: "1986"
+    grade: "1,2 GPA on 1-6 scale"
+    logo: "/assets/images/goerres-logo.png"
+    description: "German High School Graduation (Abitur)"
+
+  - id: "us-high-school"
+    institution: "Kentridge High School"
+    location: "Kentrigdge, WA"
+    degree_type: "US High School Graduation"
+    course_title: "US High School Graduation"
+    start_date: ""
+    end_date: "1984"
+    duration: "1984"
+    grade: "3.8 GPA"
+    logo: "/assets/images/kentridge-logo.png"
+    description: "US High School Graduation"
+
+skills:
+  management:
+    - name: "Team Leadership"
+      level: 9
+      category: "management"
+    - name: "Strategic Foresight"
+      level: 9
+      category: "management"
+    - name: "Accounting Matters"
+      level: 8
+      category: "management"
+    - name: "Financial Planning & Analysis Matters"
+      level: 9
+      category: "management"
+    - name: "Project Management and Execution"
+      level: 9
+      category: "management"
+    - name: "Corporate Tax Matters"
+      level: 7
+      category: "management"
+    - name: "Corporate Legal Matters"
+      level: 5
+      category: "management"
+    - name: "Corporate Compliance Matters"
+      level: 7
+      category: "management"
+    - name: "Data Protection and Privacy Matters"
+      level: 8
+      category: "management"
+
+  it:
+    - name: "Standard Office Applications"
+      level: 9
+      category: "it"
+    - name: "AI and Agentic Tools"
+      level: 8
+      category: "it"
+    - name: "Data Science: ML / AI Process"
+      level: 8
+      category: "it"
+    - name: "Python (Jupyter / Jupyter Lab)"
+      level: 7
+      category: "it"
+    - name: "Databases: SQL (MariaDB, Teradata, Snowflake)"
+      level: 7
+      category: "it"
+    - name: "BI-Applications"
+      level: 8
+      category: "it"
+    - name: "Privacy and Data Protection"
+      level: 8
+      category: "it"
+
+  languages:
+    - name: "German"
+      level: 10
+      note: "mother tongue"
+      category: "languages"
+    - name: "English"
+      level: 9
+      note: "C2 level"
+      category: "languages"
+    - name: "French"
+      level: 9
+      note: "C2 level"
+      category: "languages"
+    - name: "Spanish"
+      level: 5
+      note: "B1-B2 level"
+      category: "languages"
+    - name: "Dutch"
+      level: 3
+      note: "A1 level"
+      category: "languages"
+    - name: "Russian"
+      level: 2
+      note: "A1 level"
+      category: "languages"
+
+navigation:
+  home: "Home"
+  career: "Career"
+  education: "Education"
+  skills: "Skills"
+  contact: "Contact"
+
+sections:
+  career_carousel: "Career Positions"
+  academic_carousel: "Academic Achievements"
+  career_timeline: "Career Timeline"
+  skills_section: "Skills & Expertise"
+  management_skills: "Management Skills"
+  it_skills: "IT Skills"
+  language_skills: "Language Skills"

@@ -1,0 +1,340 @@
+---
+layout: default
+title: "Senior Finance Director - Ad fiduciam per factum"
+description: "Ulf Morys - Senior Finance Director with expertise in financial management, strategic planning, and digital transformation"
+---
+
+<!-- Hero Section -->
+<section class="hero-section" id="heroSection">
+    <div class="hero-container">
+        <div class="hero-content">
+            <div class="slogan" id="slogan">
+                <!-- Loaded dynamically -->
+            </div>
+            <div class="intro" id="intro">
+                <!-- Loaded dynamically -->
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Career Positions Carousel -->
+<section class="carousel-section" id="careerCarouselSection">
+    <div class="section-container">
+        <h2 class="section-title" id="careerCarouselTitle">Career Positions</h2>
+        <div class="carousel-container">
+            <div class="carousel" id="careerCarousel">
+                <!-- Loaded dynamically -->
+            </div>
+            <div class="carousel-nav">
+                <button class="carousel-btn carousel-prev" id="careerPrev">‹</button>
+                <button class="carousel-btn carousel-next" id="careerNext">›</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Academic Achievements Carousel -->
+<section class="carousel-section" id="academicCarouselSection">
+    <div class="section-container">
+        <h2 class="section-title" id="academicCarouselTitle">Academic Achievements</h2>
+        <div class="carousel-container">
+            <div class="carousel" id="academicCarousel">
+                <!-- Loaded dynamically -->
+            </div>
+            <div class="carousel-nav">
+                <button class="carousel-btn carousel-prev" id="academicPrev">‹</button>
+                <button class="carousel-btn carousel-next" id="academicNext">›</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Career Timeline -->
+<section class="timeline-section" id="timelineSection">
+    <div class="section-container">
+        <h2 class="section-title" id="timelineTitle">Career Timeline</h2>
+        <div class="timeline-container">
+            <div class="timeline" id="timeline">
+                <!-- Loaded dynamically -->
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Skills Section -->
+<section class="skills-section" id="skillsSection">
+    <div class="section-container">
+        <h2 class="section-title" id="skillsTitle">Skills & Expertise</h2>
+
+        <!-- Management Skills -->
+        <div class="skill-category" id="managementSkills">
+            <h3 class="skill-category-title" id="managementSkillsTitle">Management Skills</h3>
+            <div class="skills-grid" id="managementSkillsGrid">
+                <!-- Loaded dynamically -->
+            </div>
+        </div>
+
+        <!-- IT Skills -->
+        <div class="skill-category" id="itSkills">
+            <h3 class="skill-category-title" id="itSkillsTitle">IT Skills</h3>
+            <div class="skills-grid" id="itSkillsGrid">
+                <!-- Loaded dynamically -->
+            </div>
+        </div>
+
+        <!-- Language Skills -->
+        <div class="skill-category" id="languageSkills">
+            <h3 class="skill-category-title" id="languageSkillsTitle">Language Skills</h3>
+            <div class="skills-grid" id="languageSkillsGrid">
+                <!-- Loaded dynamically -->
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    // Initialize the main page
+    document.addEventListener('DOMContentLoaded', function() {
+        initializePage();
+    });
+
+    async function initializePage() {
+        try {
+            showLoading();
+
+            const currentLang = getCurrentLanguage();
+            const data = await loadContentData(currentLang);
+
+            // Update navigation text
+            updateNavigationText(data.navigation);
+
+            // Render all sections
+            renderHeroSection(data);
+            renderCareerCarousel(data);
+            renderAcademicCarousel(data);
+            renderTimeline(data);
+            renderSkills(data);
+            renderFooter(data);
+
+            hideLoading();
+        } catch (error) {
+            console.error('Error initializing page:', error);
+            showError('Failed to load page content');
+            hideLoading();
+        }
+    }
+
+    function renderHeroSection(data) {
+        // Render slogan
+        const sloganHtml = `
+            <h1 class="slogan-latin">${data.slogan.latin}</h1>
+            <p class="slogan-translation">${data.slogan.translation}</p>
+        `;
+        document.getElementById('slogan').innerHTML = sloganHtml;
+
+        // Render intro
+        const introText = data.intro.text.replace(/\n/g, '<br>');
+        document.getElementById('intro').innerHTML = `<p class="intro-text">${introText}</p>`;
+    }
+
+    function renderCareerCarousel(data) {
+        document.getElementById('careerCarouselTitle').textContent = data.sections.career_carousel;
+
+        const carouselHtml = data.career_positions.map(position => `
+            <div class="carousel-item" onclick="window.location.href='/career/${position.id}/'">
+                <div class="carousel-card">
+                    <div class="card-logo">
+                        <img src="${position.logo}" alt="${position.company} logo" onerror="this.style.display='none'">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">${position.position}</h3>
+                        <h4 class="card-company">${position.company}</h4>
+                        <p class="card-duration">${position.duration}</p>
+                    </div>
+                    ${position.current ? '<div class="current-badge">Current</div>' : ''}
+                </div>
+            </div>
+        `).join('');
+
+        document.getElementById('careerCarousel').innerHTML = carouselHtml;
+
+        // Initialize carousel functionality
+        initializeCarousel('career');
+    }
+
+    function renderAcademicCarousel(data) {
+        document.getElementById('academicCarouselTitle').textContent = data.sections.academic_carousel;
+
+        const carouselHtml = data.academic_achievements.map(achievement => `
+            <div class="carousel-item" onclick="window.location.href='/education/${achievement.id}/'">
+                <div class="carousel-card">
+                    <div class="card-logo">
+                        <img src="${achievement.logo}" alt="${achievement.institution} logo" onerror="this.style.display='none'">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">${achievement.degree_type}</h3>
+                        <h4 class="card-institution">${achievement.institution}</h4>
+                        <p class="card-duration">${achievement.duration}</p>
+                        ${achievement.grade ? `<p class="card-grade">${achievement.grade}</p>` : ''}
+                    </div>
+                </div>
+            </div>
+        `).join('');
+
+        document.getElementById('academicCarousel').innerHTML = carouselHtml;
+
+        // Initialize carousel functionality
+        initializeCarousel('academic');
+    }
+
+    function renderTimeline(data) {
+        document.getElementById('timelineTitle').textContent = data.sections.career_timeline;
+
+        // Sort positions by start date (most recent first)
+        const sortedPositions = [...data.career_positions].sort((a, b) => {
+            return new Date(b.start_date || '1900-01-01') - new Date(a.start_date || '1900-01-01');
+        });
+
+        const timelineHtml = sortedPositions.map((position, index) => `
+            <div class="timeline-item ${index % 2 === 0 ? 'timeline-left' : 'timeline-right'}">
+                <div class="timeline-content">
+                    <div class="timeline-date">${position.duration}</div>
+                    <h3 class="timeline-position">${position.position}</h3>
+                    <h4 class="timeline-company">${position.company}</h4>
+                    <p class="timeline-summary">${position.summary}</p>
+                    <a href="/career/${position.id}/" class="timeline-link">Read More →</a>
+                </div>
+                <div class="timeline-marker">
+                    ${position.current ? '<div class="current-indicator"></div>' : ''}
+                </div>
+            </div>
+        `).join('');
+
+        document.getElementById('timeline').innerHTML = timelineHtml;
+    }
+
+    function renderSkills(data) {
+        document.getElementById('skillsTitle').textContent = data.sections.skills_section;
+        document.getElementById('managementSkillsTitle').textContent = data.sections.management_skills;
+        document.getElementById('itSkillsTitle').textContent = data.sections.it_skills;
+        document.getElementById('languageSkillsTitle').textContent = data.sections.language_skills;
+
+        // Render management skills
+        const managementHtml = data.skills.management.map(skill => `
+            <div class="skill-item">
+                <div class="skill-header">
+                    <span class="skill-name">${skill.name}</span>
+                    <span class="skill-level">${skill.level}/10</span>
+                </div>
+                <div class="skill-bar">
+                    <div class="skill-progress" style="width: ${skill.level * 10}%"></div>
+                </div>
+            </div>
+        `).join('');
+        document.getElementById('managementSkillsGrid').innerHTML = managementHtml;
+
+        // Render IT skills
+        const itHtml = data.skills.it.map(skill => `
+            <div class="skill-item">
+                <div class="skill-header">
+                    <span class="skill-name">${skill.name}</span>
+                    <span class="skill-level">${skill.level}/10</span>
+                </div>
+                <div class="skill-bar">
+                    <div class="skill-progress" style="width: ${skill.level * 10}%"></div>
+                </div>
+            </div>
+        `).join('');
+        document.getElementById('itSkillsGrid').innerHTML = itHtml;
+
+        // Render language skills
+        const languageHtml = data.skills.languages.map(skill => `
+            <div class="skill-item">
+                <div class="skill-header">
+                    <span class="skill-name">${skill.name}</span>
+                    <span class="skill-level">${skill.level}/10</span>
+                </div>
+                <div class="skill-bar">
+                    <div class="skill-progress" style="width: ${skill.level * 10}%"></div>
+                </div>
+                ${skill.note ? `<div class="skill-note">${skill.note}</div>` : ''}
+            </div>
+        `).join('');
+        document.getElementById('languageSkillsGrid').innerHTML = languageHtml;
+    }
+
+    function renderFooter(data) {
+        const footerHtml = `
+            <div class="contact-info">
+                <a href="mailto:${data.contact.email}" class="contact-link">
+                    <span class="contact-icon">✉</span>
+                    ${data.contact.email}
+                </a>
+                <a href="${data.contact.linkedin}" target="_blank" rel="noopener" class="contact-link">
+                    <span class="contact-icon">in</span>
+                    LinkedIn
+                </a>
+            </div>
+        `;
+        document.getElementById('footerContact').innerHTML = footerHtml;
+    }
+
+    function updateNavigationText(navigation) {
+        const navLinks = document.querySelectorAll('[data-nav]');
+        navLinks.forEach(link => {
+            const navKey = link.getAttribute('data-nav');
+            if (navigation[navKey]) {
+                link.textContent = navigation[navKey];
+            }
+        });
+    }
+
+    // Carousel functionality
+    function initializeCarousel(type) {
+        const carousel = document.getElementById(`${type}Carousel`);
+        const prevBtn = document.getElementById(`${type}Prev`);
+        const nextBtn = document.getElementById(`${type}Next`);
+
+        let currentIndex = 0;
+        const items = carousel.querySelectorAll('.carousel-item');
+        const itemsPerView = getItemsPerView();
+
+        function updateCarousel() {
+            const translateX = -(currentIndex * (100 / itemsPerView));
+            carousel.style.transform = `translateX(${translateX}%)`;
+        }
+
+        function getItemsPerView() {
+            if (window.innerWidth < 768) return 1;
+            if (window.innerWidth < 1024) return 2;
+            return 3;
+        }
+
+        prevBtn.addEventListener('click', () => {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateCarousel();
+            }
+        });
+
+        nextBtn.addEventListener('click', () => {
+            const maxIndex = Math.max(0, items.length - itemsPerView);
+            if (currentIndex < maxIndex) {
+                currentIndex++;
+                updateCarousel();
+            }
+        });
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            const newItemsPerView = getItemsPerView();
+            if (newItemsPerView !== itemsPerView) {
+                currentIndex = 0;
+                updateCarousel();
+            }
+        });
+
+        updateCarousel();
+    }
+</script>
