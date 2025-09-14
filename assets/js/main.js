@@ -177,7 +177,31 @@ class CVWebsite {
 
     isMainPage() {
         const path = window.location.pathname;
-        return path === '/' || path === '/index.html' || path.match(/^\/(en|de|fr)\/?$/);
+        const baseUrl = document.querySelector('meta[name="base-url"]')?.content || '';
+
+        // Check for various main page patterns with and without baseurl
+        const mainPagePatterns = [
+            '/',
+            '/index.html',
+            baseUrl + '/',
+            baseUrl + '/index.html',
+            baseUrl + '/en/',
+            baseUrl + '/de/',
+            baseUrl + '/fr/'
+        ];
+
+        // Also check for language-specific paths
+        const isLangPath = path.match(/^\/(en|de|fr)\/?$/) || path.match(/^\/cv\/(en|de|fr)\/?$/);
+
+        console.log('isMainPage check:', {
+            currentPath: path,
+            baseUrl: baseUrl,
+            patterns: mainPagePatterns,
+            isMatch: mainPagePatterns.includes(path) || isLangPath,
+            isLangPath: !!isLangPath
+        });
+
+        return mainPagePatterns.includes(path) || !!isLangPath;
     }
 
     async loadContentData(language) {
