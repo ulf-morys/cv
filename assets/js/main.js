@@ -725,6 +725,33 @@ class AccessibilityManager {
             carousel.setAttribute('role', 'region');
             carousel.setAttribute('aria-label', 'Content carousel');
         });
+
+        // Initialize toggle sections accessibility
+        this.initializeToggleAccessibility();
+    }
+
+    initializeToggleAccessibility() {
+        const toggleSections = document.querySelectorAll('.toggle-section');
+        toggleSections.forEach(section => {
+            const toggleHeader = section.querySelector('.toggle-header');
+            const toggleContent = section.querySelector('.toggle-content');
+
+            if (toggleHeader && toggleContent) {
+                // Make header focusable and add keyboard support
+                toggleHeader.setAttribute('tabindex', '0');
+                toggleHeader.setAttribute('role', 'button');
+                toggleHeader.setAttribute('aria-expanded', 'false');
+                toggleContent.setAttribute('aria-hidden', 'true');
+
+                // Add keyboard event listener
+                toggleHeader.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        toggleHeader.click();
+                    }
+                });
+            }
+        });
     }
 }
 
@@ -785,6 +812,24 @@ class PerformanceManager {
         });
     }
 }
+
+// Toggle Section Functionality
+window.toggleSection = function(sectionId) {
+    const section = document.getElementById(sectionId);
+    if (!section) return;
+
+    const isExpanded = section.classList.contains('expanded');
+    section.classList.toggle('expanded');
+
+    // Update ARIA attributes for accessibility
+    const toggleHeader = section.querySelector('.toggle-header');
+    const toggleContent = section.querySelector('.toggle-content');
+
+    if (toggleHeader && toggleContent) {
+        toggleHeader.setAttribute('aria-expanded', !isExpanded);
+        toggleContent.setAttribute('aria-hidden', isExpanded);
+    }
+};
 
 // Global functions for detail pages
 window.getCurrentLanguage = function() {

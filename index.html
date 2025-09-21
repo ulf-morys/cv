@@ -47,12 +47,19 @@ description: "Ulf Morys - Senior Finance Director with expertise in financial ma
 </section>
 
 <!-- Career Timeline -->
-<section class="timeline-section">
+<section class="timeline-section toggle-section" id="timelineSection">
     <div class="section-container">
-        <h2 class="section-title" id="timelineTitle"><!-- Dynamic content loaded here --></h2>
-        <div class="timeline-container">
-            <div class="timeline" id="timeline">
-                <!-- Dynamic content loaded here -->
+        <div class="toggle-header" onclick="toggleSection('timelineSection')">
+            <h2 class="toggle-title" id="timelineTitle"><!-- Dynamic content loaded here --></h2>
+            <span class="toggle-icon">▶</span>
+        </div>
+        <div class="toggle-content">
+            <div class="toggle-content-inner">
+                <div class="timeline-container">
+                    <div class="timeline" id="timeline">
+                        <!-- Dynamic content loaded here -->
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -64,26 +71,47 @@ description: "Ulf Morys - Senior Finance Director with expertise in financial ma
         <h2 class="section-title" id="skillsTitle"><!-- Dynamic content loaded here --></h2>
 
         <!-- Management Skills -->
-        <div class="skills-category">
-            <h3 class="skills-subtitle" id="managementSkillsTitle"><!-- Dynamic content loaded here --></h3>
-            <div class="skills-grid" id="managementSkillsGrid">
-                <!-- Dynamic content loaded here -->
+        <div class="skills-category toggle-section" id="managementSkillsSection">
+            <div class="toggle-header" onclick="toggleSection('managementSkillsSection')">
+                <h3 class="toggle-title" id="managementSkillsTitle"><!-- Dynamic content loaded here --></h3>
+                <span class="toggle-icon">▶</span>
+            </div>
+            <div class="toggle-content">
+                <div class="toggle-content-inner">
+                    <div class="skills-grid" id="managementSkillsGrid">
+                        <!-- Dynamic content loaded here -->
+                    </div>
+                </div>
             </div>
         </div>
 
         <!-- IT Skills -->
-        <div class="skills-category">
-            <h3 class="skills-subtitle" id="itSkillsTitle"><!-- Dynamic content loaded here --></h3>
-            <div class="skills-grid" id="itSkillsGrid">
-                <!-- Dynamic content loaded here -->
+        <div class="skills-category toggle-section" id="itSkillsSection">
+            <div class="toggle-header" onclick="toggleSection('itSkillsSection')">
+                <h3 class="toggle-title" id="itSkillsTitle"><!-- Dynamic content loaded here --></h3>
+                <span class="toggle-icon">▶</span>
+            </div>
+            <div class="toggle-content">
+                <div class="toggle-content-inner">
+                    <div class="skills-grid" id="itSkillsGrid">
+                        <!-- Dynamic content loaded here -->
+                    </div>
+                </div>
             </div>
         </div>
 
         <!-- Language Skills -->
-        <div class="skills-category">
-            <h3 class="skills-subtitle" id="languageSkillsTitle"><!-- Dynamic content loaded here --></h3>
-            <div class="skills-grid" id="languageSkillsGrid">
-                <!-- Dynamic content loaded here -->
+        <div class="skills-category toggle-section" id="languageSkillsSection">
+            <div class="toggle-header" onclick="toggleSection('languageSkillsSection')">
+                <h3 class="toggle-title" id="languageSkillsTitle"><!-- Dynamic content loaded here --></h3>
+                <span class="toggle-icon">▶</span>
+            </div>
+            <div class="toggle-content">
+                <div class="toggle-content-inner">
+                    <div class="skills-grid" id="languageSkillsGrid">
+                        <!-- Dynamic content loaded here -->
+                    </div>
+                </div>
             </div>
         </div>
     </div>

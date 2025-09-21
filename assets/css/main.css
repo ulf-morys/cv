@@ -1149,3 +1149,77 @@ a:focus,
         border: 2px solid var(--border-color);
     }
 }
+
+/* Toggle Section Styles */
+.toggle-section {
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    margin-bottom: var(--spacing-lg);
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 2px 4px var(--shadow-color);
+}
+
+.toggle-header {
+    background: var(--primary);
+    color: var(--text-light);
+    padding: var(--spacing-lg);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: background-color var(--transition-fast);
+    user-select: none;
+}
+
+.toggle-header:hover {
+    background: var(--secondary);
+}
+
+.toggle-title {
+    margin: 0;
+    font-size: var(--font-size-2xl);
+    font-weight: 600;
+}
+
+.toggle-icon {
+    font-size: var(--font-size-xl);
+    transition: transform var(--transition-base);
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    text-align: center;
+}
+
+.toggle-section.expanded .toggle-icon {
+    transform: rotate(90deg);
+}
+
+.toggle-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height var(--transition-base);
+    background: #fff;
+}
+
+.toggle-section.expanded .toggle-content {
+    max-height: 2000px; /* Large value to accommodate content */
+}
+
+.toggle-content-inner {
+    padding: var(--spacing-lg);
+}
+
+/* Adjust existing styles for toggle integration */
+.timeline-section.toggle-section .timeline-container {
+    margin: 0;
+}
+
+.skills-section.toggle-section .skills-category {
+    border: none;
+    margin-bottom: var(--spacing-lg);
+}
+
+.skills-section.toggle-section .skills-category:last-child {
+    margin-bottom: 0;
+}
