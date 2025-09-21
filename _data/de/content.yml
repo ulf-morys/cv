@@ -5,12 +5,7 @@ slogan:
 
 intro:
   text: |
-    Ich bin eine erfahrene Führungskraft, die im Herzen finanziell orientiert ist,
-    mit einer agilen Denkweise ausgestattet, getrieben von unternehmerischem Geist,
-    strategischem Denken und einer Leidenschaft für Digitalisierung. Ich verfüge über
-    eine nachweisliche Erfolgsbilanz in der Führung von Teams, die als zuverlässige
-    und vertrauenswürdige Geschäftspartner fungieren und optimale Unterstützung für
-    die Geschäftsbereiche bieten durch:
+    Ich bin eine erfahrene Führungskraft, die im Herzen finanziell orientiert ist, mit einer agilen Denkweise ausgestattet, getrieben von unternehmerischem Geist,  strategischem Denken und einer Leidenschaft für Digitalisierung. Ich verfüge über eine nachweisliche Erfolgsbilanz in der Führung von Teams, die als zuverlässige und vertrauenswürdige Geschäftspartner fungieren und optimale Unterstützung für das operative Geschäft bieten durch:
     • Prozesse, die einfach funktionieren & Ergebnisse produzieren
     • Handlungsorientierte Erkenntnisse für Entscheidungsfindung
     • Unterstützung von Veränderungen in der gesamten Organisation
@@ -173,7 +168,7 @@ academic_achievements:
   - id: "wirtschaftsingenieurwesen-darmstadt"
     institution: "Technische Hochschule Darmstadt"
     location: "Darmstadt"
-    degree_type: "Master in Maschinenbau Option"
+    degree_type: "Dipl.-Wirtsch.-Ing., Fachrichtung Maschinenbau"
     course_title: "Studium des Wirtschaftsingenieurwesens"
     start_date: ""
     end_date: "1993"
